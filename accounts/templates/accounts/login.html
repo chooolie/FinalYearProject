@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <p>
+  <h1>Welcome</h1>
+  <p>You can log in here</p>
+  <h2>Login</h2>
+  <div class="">
+    <form method="post" class="form-group">
+      {% csrf_token %}
+      {{form.as_p}}
+      <button class = "btn btn-default" type="submit">login</button>
+
+      <!-- csrf token allows for safe log in-- then form as paragraph-->
+    </form>
+  </div>
+
+
+</div>
+  {% endblock %}
