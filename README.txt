@@ -8,3 +8,9 @@ python manage.py migrate
 MIGRATE
 python manage.py check --deploy 
 CHECK FOR ANY SECURITY ISSUES
+
+
+SET DJANGO_SETTINGS_MODULE=tutorial.settings.dev
+to set the new settings path before running the development server
+OR 
+python manage.py runserver --settings=tutorial.settings.dev
