@@ -2,5 +2,11 @@
 {% block body%}
 <h1> It works yay</h1>
 
+<h2>
+{% for movie in movies %}
+<h1> {{movie.name}}</h1>
+<p>{{movie.genre}}</p>
+</h2>
+{% endfor%}
 
 {% endblock %}

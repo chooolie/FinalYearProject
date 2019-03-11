@@ -1,0 +1,11 @@
+movieId,rating,count_ratings,title,genres
+0,356,4.164133738601824,329,Forrest Gump (1994),Comedy|Drama|Romance|War
+1,318,4.429022082018927,317,"Shawshank Redemption, The (1994)",Crime|Drama
+2,296,4.197068403908795,307,Pulp Fiction (1994),Comedy|Crime|Drama|Thriller
+3,593,4.161290322580645,279,"Silence of the Lambs, The (1991)",Crime|Horror|Thriller
+4,2571,4.192446043165468,278,"Matrix, The (1999)",Action|Sci-Fi|Thriller
+5,260,4.231075697211155,251,Star Wars: Episode IV - A New Hope (1977),Action|Adventure|Sci-Fi
+6,480,3.75,238,Jurassic Park (1993),Action|Adventure|Sci-Fi|Thriller
+7,110,4.031645569620253,237,Braveheart (1995),Action|Drama|War
+8,589,3.970982142857143,224,Terminator 2: Judgment Day (1991),Action|Sci-Fi
+9,527,4.225,220,Schindler's List (1993),Drama|War

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block body%}
+<h1> It works yay</h1>
+
+{% for movie in top_movies %}
+<ol>
+   {{ forloop.counter }}.
+  <a href="#">{{movie.title}}</a>
+  <p>{{movie.genre}}</p>
+</ol>
+
+</h2>
+{% endfor%}
+
+<p>  {{counter}}</p>
+
+{% endblock %}
