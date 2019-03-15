@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block body%}
+<style media="screen">
+
+
+.btn-circle {
+    width: 40px;
+    height: 40px;
+    padding: 6px 0px;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 1.42857;
+}
+</style>
+
+<div id = "holder" class="container">
+  <div class="">
+    <br>
+  </div>
+  <div class="row">
+    <div class="col-3" >
+      <img src={{image}} alt="Movie Thumbnail" height="90%" width="90%">
+  </div>
+    <div class="col-8" style = "font-size:35px;font-weight:bold; color:black;">
+        {{m.title}}
+        <div class="col-10" style = "font-size:15px;">
+            Release Date:{{m.release_date}}
+        </div>
+        <div class="col-10" style = "font-size:15px;">
+          <h3>Description</h3>
+          {{m.overview}}
+        </div>
+    </div>
+    <div class="col-1">
+      <button type="button" name="button" class="btn btn-primary btn-circle""><i class="fa fa-plus"></i></button>
+    </div>
+    <div class="col-3" style="font-weight:bold">
+     <span class="fa fa-star" style="color:yellow"></span> Rating: {{m.vote_average}}/10 <span class="fa fa-star" style="color:yellow"></span>
+    </div>
+    </div>
+</<div class="col-13" >
+  <h4>Similar movies:</h4>
+  <p></p>
+
+  <div class="col-9">
+    {% with counting=1 %}
+     {%for list in list_data  %}
+
+           <!--<a href="{% url 'view' pk=list_id.1 %}"> -->  {{ forloop.counter }}. {{list}}
+
+          <p></p>
+    {%endfor%}
+    {% endwith %}
+
+   </div>
+
+</div>
+
+
+
+</div>
+{% endblock %}

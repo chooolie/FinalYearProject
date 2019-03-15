@@ -1,0 +1,614 @@
+userId;Gender;Age;Occupation;ZipCode
+1;F;Under18;K-12student;48067
+2;M;56+;self-employed;70072
+3;M;25-34;scientist;55117
+4;M;45-49;executive/managerial;2460
+5;M;25-34;writer;55455
+6;F;50-55;homemaker;55117
+7;M;35-44;academic/educator;6810
+8;M;25-34;programmer;11413
+9;M;25-34;technician/engineer;61614
+10;F;35-44;academic/educator;95370
+11;F;25-34;academic/educator;4093
+12;M;25-34;programmer;32793
+13;M;45-49;academic/educator;93304
+14;M;35-44;other;60126
+15;M;25-34;executive/managerial;22903
+16;F;35-44;other;20670
+17;M;50-55;academic/educator;95350
+18;F;18-24;clerical/admin;95825
+19;M;Under18;K-12student;48073
+20;M;25-34;sales/marketing;55113
+21;M;18-24;self-employed;99353
+22;M;18-24;scientist;53706
+23;M;35-44;other;90049
+24;F;25-34;executive/managerial;10023
+25;M;18-24;college/grad student;1609
+26;M;25-34;executive/managerial;23112
+27;M;25-34;lawyer;19130
+28;F;25-34;academic/educator;14607
+29;M;35-44;executive/managerial;33407
+30;F;35-44;executive/managerial;19143
+31;M;56+;executive/managerial;6840
+32;F;25-34;other;19355
+33;M;45-49;clerical/admin;55421
+34;F;18-24;other;2135
+35;M;45-49;academic/educator;2482
+36;M;25-34;clerical/admin;94123
+37;F;25-34;homemaker;66212
+38;F;18-24;college/grad student;2215
+39;M;18-24;college/grad student;61820
+40;M;45-49;other;10543
+41;F;18-24;college/grad student;15116
+42;M;25-34;farmer;24502
+43;M;25-34;programmer;60614
+44;M;45-49;technician/engineer;98052
+45;F;45-49;self-employed;94110
+46;M;18-24;unemployed;75602
+47;M;18-24;college/grad student;94305
+48;M;25-34;college/grad student;92107
+49;M;18-24;programmer;77084
+50;F;25-34;artist;98133
+51;F;Under18;K-12student;10562
+52;M;18-24;college/grad student;72212
+53;M;25-34;other;96931
+54;M;50-55;academic/educator;56723
+55;F;35-44;programmer;55303
+56;M;35-44;writer;60440
+57;M;18-24;unemployed;30350
+58;M;25-34;artist;30303
+59;F;50-55;academic/educator;55413
+60;M;50-55;academic/educator;72118
+61;M;25-34;technician/engineer;95122
+62;F;35-44;clerical/admin;98105
+63;M;18-24;college/grad student;54902
+64;M;18-24;academic/educator;53706
+65;M;35-44;programmer;55803
+66;M;25-34;tradesman/craftsman;57706
+67;F;50-55;customer_service;60181
+68;M;18-24;college/grad student;53706
+69;F;25-34;academic/educator;2143
+70;M;18-24;college/grad student;53703
+71;M;25-34;sales/marketing;95008
+72;F;45-49;other;55122
+73;M;18-24;college/grad student;53706
+74;M;35-44;sales/marketing;94530
+75;F;Under18;K-12student;1748
+76;M;35-44;executive/managerial;55413
+77;M;18-24;college/grad student;15321
+78;F;45-49;academic/educator;98029
+79;F;45-49;other;98103
+80;M;56+;academic/educator;49327
+81;F;25-34;other;60640
+82;M;25-34;technician/engineer;48380
+83;F;25-34;artist;94609
+84;M;18-24;college/grad student;53140
+85;M;18-24;college/grad student;94945
+86;F;Under18;K-12student;54467
+87;M;25-34;sales/marketing;48360
+88;F;45-49;academic/educator;2476
+89;F;56+;homemaker;85749
+90;M;56+;retired;85749
+91;M;35-44;executive/managerial;7650
+92;F;18-24;college/grad student;44243
+93;M;25-34;technician/engineer;95825
+94;M;25-34;technician/engineer;28601
+95;M;45-49;other;98201
+96;F;25-34;self-employed;78028
+97;F;35-44;clerical/admin;66210
+98;F;35-44;executive/managerial;33547
+99;F;Under18;K-12student;19390
+100;M;35-44;technician/engineer;95401
+101;F;18-24;clerical/admin;33314
+102;M;35-44;unemployed;20871
+103;M;45-49;executive/managerial;92104
+104;M;25-34;programmer;926
+105;M;45-49;programmer;90277
+106;F;35-44;lawyer;79101
+107;M;45-49;tradesman/craftsman;63129
+108;M;25-34;programmer;30316
+109;M;45-49;scientist;92028
+110;M;25-34;artist;90803
+111;M;35-44;scientist;55416
+112;M;25-34;self-employed;97209
+113;M;18-24;programmer;37032
+114;F;25-34;artist;83712
+115;M;25-34;technician/engineer;28083
+116;M;25-34;technician/engineer;55744
+117;M;25-34;technician/engineer;33314
+118;M;35-44;technician/engineer;22315
+119;F;Under18;K-12student;77515
+120;M;25-34;lawyer;27106
+121;M;35-44;executive/managerial;75229
+122;F;18-24;college/grad student;94305
+123;M;35-44;homemaker;67208
+124;M;56+;executive/managerial;91356
+125;M;45-49;sales/marketing;1701
+126;M;18-24;homemaker;98117
+127;F;45-49;clerical/admin;1770
+128;M;56+;doctor/health care;37922
+129;M;25-34;lawyer;20164
+130;M;35-44;technician/engineer;50021
+131;M;18-24;college/grad student;6520
+132;M;25-34;technician/engineer;99709
+133;F;25-34;other;55071
+134;M;25-34;other;66212
+135;M;18-24;college/grad student;20006
+136;M;18-24;artist;21202
+137;F;45-49;doctor/health care;78758
+138;M;18-24;writer;22203
+139;F;25-34;writer;45409
+140;F;35-44;academic/educator;55107
+141;M;35-44;retired;62035
+142;M;25-34;executive/managerial;10011
+143;M;18-24;clerical/admin;64043
+144;M;25-34;technician/engineer;29401
+145;M;18-24;college/grad student;19081
+146;F;35-44;writer;10954
+147;M;18-24;college/grad student;91360
+148;M;50-55;technician/engineer;57747
+149;M;25-34;academic/educator;29205
+150;M;35-44;executive/managerial;98144
+151;F;25-34;writer;85013
+152;M;18-24;college/grad student;48104
+153;F;Under18;K-12student;51537
+154;M;50-55;writer;94530
+155;M;35-44;programmer;7470
+156;F;45-49;executive/managerial;14519
+157;M;35-44;self-employed;12866
+158;M;56+;executive/managerial;28754
+159;F;45-49;other;37922
+160;M;35-44;executive/managerial;13021
+161;M;45-49;self-employed;98107-2117
+162;F;18-24;college/grad student;93117
+163;M;18-24;college/grad student;85013
+164;F;56+;retired;94566
+165;M;18-24;self-employed;98502
+166;M;18-24;college/grad student;92802
+167;F;25-34;lawyer;10022
+168;F;50-55;other;46970
+169;M;25-34;executive/managerial;55439
+170;M;25-34;lawyer;7002
+171;F;50-55;technician/engineer;55441
+172;M;25-34;clerical/admin;7661
+173;M;25-34;other;45237
+174;M;25-34;self-employed;21203
+175;F;25-34;artist;95123
+176;F;18-24;clerical/admin;55016
+177;M;50-55;academic/educator;54016
+178;M;56+;technician/engineer;53705
+179;M;25-34;other;2135
+180;M;45-49;programmer;1603
+181;M;18-24;technician/engineer;33186
+182;M;18-24;college/grad student;3052
+183;F;45-49;academic/educator;55407
+184;F;25-34;other;19001
+185;M;45-49;other;14468
+186;M;18-24;customer_service;91767
+187;F;45-49;academic/educator;94061
+188;M;56+;self-employed;79930
+189;M;18-24;other;60076
+190;M;25-34;technician/engineer;55125
+191;M;18-24;college/grad student;4915
+192;M;18-24;academic/educator;10977
+193;F;45-49;scientist;44106
+194;F;Under18;K-12student;29146
+195;M;25-34;programmer;10458
+196;F;35-44;homemaker;94587
+197;M;18-24;sales/marketing;10023
+198;M;25-34;programmer;55108
+199;M;18-24;college/grad student;83706
+200;F;18-24;college/grad student;84321
+201;F;35-44;artist;55117
+202;M;18-24;college/grad student;53706
+203;F;18-24;college/grad student;53715
+204;M;25-34;executive/managerial;92123
+205;M;35-44;programmer;97333
+206;M;25-34;technician/engineer;20194
+207;M;25-34;programmer;94115
+208;M;35-44;technician/engineer;55432
+209;M;35-44;academic/educator;90048
+210;F;Under18;K-12student;25801
+211;M;45-49;technician/engineer;90620
+212;M;25-34;self-employed;53714
+213;F;18-24;college/grad student;1609
+214;M;18-24;writer;80218
+215;M;35-44;sales/marketing;92075
+216;M;45-49;retired;52761
+217;M;18-24;college/grad student;22903
+218;M;35-44;sales/marketing;95822
+219;F;25-34;college/grad student;55113
+220;M;25-34;programmer;22903
+221;F;25-34;other;94063
+222;M;25-34;academic/educator;55116
+223;M;25-34;technician/engineer;28262
+224;F;18-24;college/grad student;14850
+225;M;25-34;executive/managerial;11215
+226;M;35-44;academic/educator;94518
+227;M;35-44;writer;90291
+228;M;25-34;scientist;55455
+229;M;18-24;K-12student;4576
+230;M;45-49;academic/educator;43210
+231;M;25-34;clerical/admin;55455
+232;M;25-34;writer;55408
+233;F;45-49;writer;37919-4204
+234;M;35-44;executive/managerial;39652
+235;M;25-34;other;98153
+236;M;25-34;customer_service;55126
+237;M;25-34;doctor/health care;46835
+238;F;50-55;executive/managerial;90291
+239;M;18-24;unemployed;94618
+240;M;50-55;technician/engineer;55113
+241;M;35-44;writer;55121
+242;F;18-24;college/grad student;53706
+243;M;25-34;self-employed;11576
+244;M;50-55;executive/managerial;19072
+245;M;35-44;self-employed;66046
+246;F;18-24;college/grad student;60625
+247;M;25-34;technician/engineer;94404
+248;M;18-24;technician/engineer;72703
+249;F;18-24;sales/marketing;48126
+250;M;35-44;self-employed;11229
+251;M;56+;technician/engineer;55105
+252;M;25-34;programmer;94112
+253;F;25-34;lawyer;97370
+254;M;35-44;technician/engineer;49015
+255;M;35-44;other;85310
+256;M;45-49;self-employed;55076
+257;M;18-24;tradesman/craftsman;55113
+258;M;25-34;executive/managerial;55436
+259;M;25-34;academic/educator;60615
+260;M;18-24;unemployed;98126
+261;M;25-34;writer;75801
+262;F;25-34;academic/educator;68503
+263;F;25-34;executive/managerial;22304
+264;M;35-44;other;20755
+265;F;35-44;executive/managerial;55116
+266;M;35-44;lawyer;75229
+267;M;45-49;programmer;55001
+268;F;18-24;programmer;29708
+269;M;25-34;artist;55408
+270;M;50-55;sales/marketing;55414
+271;M;18-24;college/grad student;48202
+272;M;18-24;other;80302
+273;M;18-24;college/grad student;55427
+274;M;18-24;college/grad student;55455
+275;M;25-34;other;48162
+276;M;45-49;self-employed;1982
+277;F;35-44;academic/educator;98126
+278;M;45-49;tradesman/craftsman;60482
+279;M;25-34;sales/marketing;91214
+280;M;50-55;executive/managerial;19118
+281;F;35-44;other;94117
+282;M;25-34;technician/engineer;94401
+283;M;25-34;other;10003
+284;M;25-34;programmer;91910
+285;F;35-44;other;94109
+286;M;25-34;academic/educator;54601
+287;M;50-55;retired;94706
+288;F;25-34;programmer;97119
+289;F;25-34;other;11801
+290;F;25-34;writer;94591
+291;M;35-44;programmer;55110
+292;M;35-44;executive/managerial;19406
+293;M;56+;academic/educator;55337-4056
+294;F;45-49;homemaker;43147
+295;M;18-24;other;80203
+296;M;50-55;customer_service;89432
+297;M;18-24;artist;97211
+298;F;18-24;college/grad student;19010
+299;M;25-34;programmer;97370
+300;M;25-34;executive/managerial;78664
+301;M;18-24;college/grad student;61820
+302;M;18-24;college/grad student;4901
+303;M;25-34;executive/managerial;20006
+304;M;25-34;other;55414
+305;F;18-24;other;55414
+306;M;18-24;other;53051
+307;M;50-55;self-employed;90027
+308;M;25-34;artist;10025
+309;M;25-34;college/grad student;16801
+310;F;18-24;college/grad student;31207
+311;M;18-24;college/grad student;31201
+312;F;50-55;artist;22207
+313;F;18-24;college/grad student;2138
+314;F;56+;homemaker;46911
+315;F;56+;academic/educator;55105
+316;M;56+;retired;90740
+317;M;35-44;executive/managerial;38555
+318;F;56+;retired;55104
+319;F;50-55;doctor/health care;33436
+320;M;35-44;doctor/health care;99516
+321;M;18-24;college/grad student;55128
+322;M;56+;technician/engineer;55117
+323;M;45-49;programmer;53716
+324;M;35-44;technician/engineer;55106
+325;F;50-55;clerical/admin;55112
+326;M;50-55;lawyer;25302
+327;M;35-44;tradesman/craftsman;55448
+328;M;35-44;programmer;80401
+329;M;35-44;executive/managerial;2115
+330;M;56+;executive/managerial;92065
+331;M;25-34;executive/managerial;55902
+332;M;50-55;academic/educator;55109
+333;M;35-44;artist;55410
+334;F;56+;artist;55113
+335;M;35-44;tradesman/craftsman;55434
+336;M;18-24;other;98765
+337;M;18-24;unemployed;80205
+338;M;35-44;executive/managerial;55116
+339;M;50-55;executive/managerial;80207
+340;F;25-34;clerical/admin;28001
+341;F;56+;retired;92119
+342;M;18-24;programmer;55076
+343;F;35-44;clerical/admin;55127
+344;M;35-44;sales/marketing;75034
+345;M;25-34;programmer;94114
+346;F;25-34;other;55110
+347;F;56+;academic/educator;55305
+348;M;50-55;executive/managerial;55110
+349;F;Under18;K-12student;8035
+350;M;45-49;writer;8035
+351;M;18-24;college/grad student;55105
+352;M;18-24;college/grad student;60115
+353;F;35-44;executive/managerial;92625
+354;M;35-44;academic/educator;55117
+355;M;18-24;clerical/admin;55107
+356;M;56+;writer;55101
+357;M;18-24;other;98103
+358;F;56+;academic/educator;20815
+359;M;25-34;technician/engineer;55128
+360;M;35-44;technician/engineer;28208
+361;F;25-34;sales/marketing;94115
+362;M;35-44;writer;55407
+363;M;18-24;K-12student;55419
+364;F;35-44;academic/educator;46815
+365;F;18-24;college/grad student;2138
+366;M;50-55;scientist;55126
+367;M;50-55;programmer;55421
+368;M;25-34;other;90293
+369;M;35-44;academic/educator;55110
+370;M;18-24;technician/engineer;22304
+371;M;18-24;college/grad student;2141
+372;F;18-24;college/grad student;72227
+373;F;25-34;artist;55347
+374;F;35-44;sales/marketing;55346
+375;M;25-34;artist;55106
+376;M;35-44;academic/educator;80026
+377;M;25-34;technician/engineer;55418
+378;F;18-24;other;55105
+379;F;35-44;academic/educator;54822
+380;M;25-34;artist;92024
+381;M;35-44;technician/engineer;89015
+382;F;35-44;writer;66205
+383;F;25-34;executive/managerial;78757
+384;M;25-34;lawyer;55075
+385;M;25-34;doctor/health care;68131
+386;M;25-34;other;55408
+387;F;35-44;executive/managerial;55111
+388;F;25-34;other;10021
+389;M;25-34;doctor/health care;68128
+390;M;25-34;college/grad student;55405
+391;M;45-49;lawyer;22122
+392;M;18-24;executive/managerial;20037
+393;M;35-44;technician/engineer;55402
+394;M;18-24;other;55013
+395;M;18-24;customer_service;55104
+396;M;25-34;academic/educator;56187
+397;M;35-44;technician/engineer;22124
+398;M;25-34;technician/engineer;55454
+399;F;35-44;doctor/health care;55128
+400;F;18-24;clerical/admin;55422
+401;M;18-24;other;55129
+402;M;25-34;lawyer;55427
+403;M;18-24;college/grad student;2138
+404;M;18-24;college/grad student;10128
+405;M;56+;academic/educator;13077
+406;M;25-34;writer;55105
+407;M;18-24;technician/engineer;89503
+408;M;25-34;lawyer;2143
+409;M;18-24;programmer;55122
+410;F;25-34;academic/educator;55417
+411;F;45-49;academic/educator;43214
+412;M;35-44;scientist;55117
+413;M;25-34;lawyer;55409
+414;M;25-34;other;55317
+415;F;35-44;other;55406
+416;M;45-49;sales/marketing;55076
+417;F;25-34;other;50613
+418;F;25-34;clerical/admin;54016
+419;M;18-24;clerical/admin;55422
+420;M;35-44;academic/educator;55406
+421;F;45-49;clerical/admin;55125
+422;M;56+;technician/engineer;55104
+423;M;18-24;college/grad student;55455
+424;M;25-34;technician/engineer;55112
+425;M;25-34;programmer;55303
+426;M;18-24;college/grad student;55455
+427;M;35-44;programmer;55104
+428;F;18-24;college/grad student;55455
+429;M;18-24;other;54901
+430;F;18-24;K-12student;55306
+431;M;18-24;K-12student;55303
+432;M;45-49;self-employed;55306
+433;M;50-55;doctor/health care;55115
+434;F;45-49;clerical/admin;98155
+435;M;25-34;executive/managerial;55125
+436;M;18-24;college/grad student;43023
+437;M;35-44;technician/engineer;55030
+438;M;18-24;lawyer;53705
+439;M;35-44;sales/marketing;55129
+440;M;56+;academic/educator;32940
+441;M;35-44;academic/educator;55127
+442;M;25-34;academic/educator;55105
+443;M;25-34;clerical/admin;55421
+444;M;56+;other;55108
+445;M;45-49;programmer;55117
+446;F;50-55;other;55042
+447;F;45-49;lawyer;55105
+448;M;25-34;technician/engineer;80123
+449;M;25-34;executive/managerial;85037
+450;M;45-49;academic/educator;24523
+451;M;56+;retired;54720
+452;M;50-55;technician/engineer;55117
+453;M;18-24;college/grad student;55102
+454;M;25-34;writer;55092
+455;F;35-44;artist;55113
+456;M;35-44;other;55105
+457;M;18-24;college/grad student;54703
+458;M;50-55;self-employed;55405-2546
+459;F;18-24;college/grad student;55105
+460;M;45-49;tradesman/craftsman;55313
+461;M;50-55;executive/managerial;55075
+462;M;18-24;self-employed;55416
+463;M;25-34;executive/managerial;55105
+464;F;18-24;college/grad student;55455
+465;M;18-24;unemployed;94523
+466;M;25-34;customer_service;55405
+467;F;35-44;clerical/admin;55075
+468;F;Under18;K-12student;55082
+469;M;35-44;doctor/health care;55122
+470;F;Under18;K-12student;55068
+471;M;35-44;executive/managerial;8904
+472;M;35-44;other;55418
+473;F;18-24;college/grad student;55112
+474;M;25-34;technician/engineer;92126
+475;F;25-34;artist;55421
+476;M;35-44;other;55127
+477;M;35-44;sales/marketing;55410
+478;M;50-55;self-employed;55113
+479;M;25-34;programmer;55042
+480;F;18-24;college/grad student;55422
+481;M;45-49;executive/managerial;55115
+482;M;25-34;sales/marketing;55305
+483;M;18-24;programmer;55105
+484;F;Under18;K-12student;55104
+485;M;56+;executive/managerial;55042
+486;M;56+;other;91367
+487;F;35-44;technician/engineer;55082
+488;M;25-34;programmer;55107
+489;M;18-24;college/grad student;55455
+490;F;Under18;K-12student;55345
+491;M;18-24;college/grad student;56043
+492;M;25-34;programmer;55112
+493;M;50-55;executive/managerial;55016
+494;F;35-44;other;17870
+495;M;18-24;K-12student;55421
+496;M;18-24;college/grad student;55455
+497;F;25-34;technician/engineer;55412
+498;M;35-44;technician/engineer;55113
+499;F;25-34;academic/educator;55108
+500;F;18-24;artist;55105
+501;M;25-34;artist;55372
+502;M;35-44;doctor/health care;55126
+503;M;35-44;lawyer;73120
+504;M;25-34;artist;17003
+505;M;35-44;technician/engineer;37815
+506;M;25-34;self-employed;55103-1006
+507;F;25-34;other;55405
+508;M;25-34;programmer;55418
+509;M;25-34;artist;55125
+510;M;18-24;programmer;55109
+511;F;45-49;college/grad student;15232
+512;M;35-44;other;55379
+513;M;25-34;other;55119
+514;M;25-34;artist;55113
+515;M;25-34;academic/educator;55406
+516;F;56+;sales/marketing;55033
+517;F;25-34;sales/marketing;55408
+518;F;35-44;programmer;75240
+519;F;35-44;sales/marketing;55038
+520;F;35-44;writer;55104
+521;M;56+;executive/managerial;55105
+522;M;25-34;programmer;55124
+523;M;50-55;executive/managerial;55105
+524;M;18-24;other;91320
+525;M;35-44;doctor/health care;19027
+526;M;45-49;technician/engineer;94806
+527;F;25-34;artist;11201
+528;F;18-24;technician/engineer;83843
+529;M;35-44;programmer;92009
+530;M;25-34;artist;10019
+531;F;18-24;sales/marketing;22206
+532;M;25-34;executive/managerial;94301
+533;M;25-34;programmer;27514
+534;M;25-34;scientist;55902
+535;M;35-44;doctor/health care;95370
+536;M;25-34;writer;1267
+537;M;45-49;sales/marketing;7704
+538;M;56+;self-employed;95407
+539;M;25-34;artist;55103
+540;M;18-24;academic/educator;15213
+541;F;18-24;college/grad student;5849574
+542;M;18-24;college/grad student;78705
+543;M;25-34;customer_service;55057
+544;M;35-44;programmer;94538
+545;M;35-44;technician/engineer;1890
+546;F;25-34;other;37211
+547;M;35-44;programmer;76109
+548;F;35-44;self-employed;96860
+549;M;25-34;doctor/health care;53217
+550;M;45-49;farmer;21559
+551;M;35-44;writer;55116
+552;M;50-55;tradesman/craftsman;23456
+553;M;25-34;artist;94131
+554;M;25-34;programmer;94086
+555;M;18-24;college/grad student;53213
+556;F;25-34;homemaker;37221
+557;M;56+;academic/educator;30030
+558;M;35-44;writer;55108
+559;F;25-34;executive/managerial;60422
+560;M;45-49;scientist;81335
+561;F;18-24;sales/marketing;64060
+562;M;35-44;writer;48083
+563;M;25-34;college/grad student;53703
+564;M;45-49;academic/educator;49419
+565;M;25-34;self-employed;45242
+566;M;25-34;technician/engineer;92122
+567;M;35-44;writer;52570-9634
+568;F;50-55;technician/engineer;19716
+569;F;18-24;college/grad student;97339
+570;M;25-34;college/grad student;33314
+571;M;50-55;customer_service;95401
+572;M;18-24;college/grad student;61801
+573;F;35-44;artist;98119
+574;M;25-34;unemployed;90214
+575;M;25-34;programmer;92130
+576;F;45-49;scientist;20910
+577;M;35-44;other;2115
+578;M;18-24;technician/engineer;90064
+579;M;25-34;customer_service;32839
+580;F;Under18;K-12student;8534
+581;M;50-55;sales/marketing;73543
+582;M;18-24;college/grad student;67042
+583;F;25-34;other;48067
+584;F;25-34;other;94403
+585;M;18-24;academic/educator;53703
+586;M;35-44;sales/marketing;53092
+587;M;25-34;writer;92649
+588;F;25-34;lawyer;23220
+589;M;18-24;artist;90210
+590;F;35-44;doctor/health care;98032
+591;M;25-34;other;76201
+592;M;18-24;other;92103
+593;F;50-55;academic/educator;91711
+594;F;56+;retired;60076
+595;M;25-34;executive/managerial;10019
+596;F;25-34;academic/educator;1950
+597;M;35-44;programmer;80206
+598;M;35-44;executive/managerial;95476
+599;M;50-55;doctor/health care;53711
+600;M;35-44;technician/engineer;66209
+601;F;18-24;writer;6320
+602;F;56+;doctor/health care;14612
+603;F;25-34;doctor/health care;32256
+604;M;45-49;technician/engineer;32256
+605;F;18-24;college/grad student;44425
+606;F;Under18;K-12student;49507
+607;M;25-34;other;43614
+608;M;18-24;college/grad student;18011
+609;M;25-34;executive/managerial;10012
+610;M;25-34;college/grad student;77025
+611;F;18-24;college/grad student;12345
+612;M;18-24;college/grad student;12346
+613;F;18-24;programmer;12347

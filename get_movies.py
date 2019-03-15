@@ -9,20 +9,22 @@ django.setup()
 # Inspiration from https://github.com/aakashsethi20/MovieScope
 
 from movies.models import Movie
+#in dbshell run delete from  movies_topmovies;
 #exec(open('get_movies.py').read())
 
 def save_movie_from_row(movie_row):
     movie = Movie()
     movie.movie_id = movie_row[0]
-    movie.name = movie_row[1]
-    movie.genre = movie_row[2]
+    movie.tmdbId = movie_row[1]    
+    movie.name = movie_row[2]
+    movie.genre = movie_row[3]
     movie.save()
 
 if __name__ == "__main__":
 
     if len(sys.argv) == 2:
         #print "Reading from file " + str(sys.argv[1])
-        movies_df = pd.read_csv('data/movies.csv')
+        movies_df = pd.read_csv('data/movies_links.csv')
 
         movies_df.apply(
             save_movie_from_row,

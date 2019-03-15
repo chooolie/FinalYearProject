@@ -1,17 +1,33 @@
 {% extends 'base.html' %}
+
 {% block body%}
-<h1> It works yay</h1>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.checked {
+  color: orange;
+}
+</style>
+<h1 style="color:blue; text-align:center;"> Top 10 movies</h1>
+<br>
 
-{% for movie in top_movies %}
-<ol>
-   {{ forloop.counter }}.
-  <a href="#">{{movie.title}}</a>
-  <p>{{movie.genre}}</p>
-</ol>
+<div class="container" id="holder">
+  {% for movie in top_movies %}
+  <div class="row">
+    <div class="col-sm">
+        <a href="{% url 'view' pk=movie.tmdbId %}">
+          {{ forloop.counter }}.{{movie.title}}
+          </a>
 
-</h2>
+    </div>
+    <div class="col-sm">
+    {{movie.genre}}
+    </div>
+    <div class="col-sm">
+{{movie.rating}}/5
+    </div>
+  </div>
+<p></p>
 {% endfor%}
-
-<p>  {{counter}}</p>
+</div>
 
 {% endblock %}
