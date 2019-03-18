@@ -4,7 +4,7 @@ from django.template.loader import render_to_string
 from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, redirect
-from .models import Movie, TopMovies
+from .models import Movie, TopMovies, UserDemographics, UserRatings
 from tmdbv3api import TMDb
 import pandas as pd
 from tmdbv3api import Movie as tmdb_movie
@@ -19,7 +19,8 @@ warnings.filterwarnings('ignore')
 def MovieView(request):
     template_name = 'movies/movies.html'
     movies = Movie.objects.order_by('name')
-    args = {'movies': movies}
+    ratings = UserRatings.objects.all()
+    args = {'movies': movies, 'ratings':ratings}
     return render(request, template_name, args)
 
 def Top10(request):
@@ -54,6 +55,7 @@ def MovieDetails(request, pk):
         list_data.append(list[5])
         list_id.append(int(list[4]))
     image = "https://image.tmdb.org/t/p/w1280"+ m.poster_path
+
     args = {'m':m, 'image':image, "lists":lists, "list_data":list_data, "list_id":list_id}
     return render(request, template_name,args)
 

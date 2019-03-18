@@ -25,15 +25,23 @@ class TopMovies(models.Model):
 #Made it into its own ID for the training data
 
 class UserDemographics(models.Model):
-	userId = models.IntegerField("id", primary_key=True)
+	userdemo_id = models.IntegerField("id", primary_key=True)
 	Gender = models.CharField("gender", max_length=2, default="M")
 	Age = models.CharField("age", max_length=50, default="18-24")
 	Occupation = models.CharField("job", max_length= 100, default="other")
 
 class UserRatings(models.Model):
-	userId = models.ForeignKey(UserDemographics, on_delete=models.CASCADE )
-	movieId = models.ForeignKey(Movie, on_delete=models.CASCADE)
-	rating =  models.IntegerField("id",default = 2)
-	tmdbId =  models.IntegerField("id",default = 1)
+	userdemo_id = models.ForeignKey(UserDemographics, default = 1, on_delete=models.CASCADE )
+	movie_id = models.ForeignKey(Movie, on_delete=models.CASCADE)
+	rating =  models.IntegerField("rating",default = 2)
+	tmdbId =  models.IntegerField("TmdbId",default = 1)
 
+'''
+class NewUserDemographics(models.Model):
+	username = models.CharField(Auth.User)
+	Gender = models.CharField("gender", max_length=2, default="M")
+	Age = models.CharField("age", max_length=50, default="18-24")
+	Occupation = models.CharField("job", max_length= 100, default="other")
+
+'''
 #exec(open('get_movies.py').read())
