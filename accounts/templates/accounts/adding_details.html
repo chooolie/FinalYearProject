@@ -6,10 +6,10 @@
 
 {% block body %}
 <div class="container" id="holder">
-<br>
-    <form method="post">
+  <br>
+    <form method="post" style>
       {%csrf_token%}
-      {{form.as_p}}
+  {{form.as_p}}
       <button type="submit">Submit</button>
     </form>
     <br>

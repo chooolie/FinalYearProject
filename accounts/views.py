@@ -3,13 +3,14 @@ from django.contrib import messages
 from accounts.forms import (
     RegistrationForm,
     EditProfileForm,
+    UserDemoForm
 )
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash, authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-
+from .models import *
 
 #Registering user
 
@@ -32,8 +33,6 @@ def register(request):
     args = {'form':form}
     return render(request, 'accounts/reg_form.html',args)
 
-#Login is required to view profile
-
 
 def view_profile(request, pk=None):
     storage = messages.get_messages(request)
@@ -44,7 +43,31 @@ def view_profile(request, pk=None):
     args = {'user': user, 'message':storage}
     return render(request, 'accounts/profile.html', args)
 
-#Log in is rquired to edit profile
+def Add_demo_details(request):
+    template_name =  'accounts/adding_details.html'
+    instance = UserProfile.objects.get(user_id=request.user.id)
+    form = UserDemoForm(request.POST or None, instance=instance)
+    if form.is_valid():
+        form.save()
+        return redirect('/account/profile')
+    args = {'form':form}
+    return render(request, template_name, args)
+'''
+def Add_demo_details(request):
+    template_name =  'accounts/adding_details.html'
+    if request.method == 'POST':
+        form = UserDemoForm(request.POST)
+        if form.is_valid():
+            demographis = form.save(commit=False)
+            demographis.user = request.user
+            demographis.save()
+            return redirect('/account/profile')
+
+    else:
+        form = UserDemoForm()
+    args = {'form':form}
+    return render(request, template_name, args)
+'''
 
 def edit_profile(request):
     if request.method == 'POST':
