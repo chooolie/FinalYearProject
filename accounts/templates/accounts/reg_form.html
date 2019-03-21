@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
 
 {%block body%}
-<div class="container">
+
+<div class="container" id = "holder">
   <form method="post">
+        <br>
     {% csrf_token %}
     {{form.as_p}}
+
     <button class = "btn btn-default" type="submit">Sign up</button>
   </form>
+  <br>
 </div>
 
 {%endblock%}

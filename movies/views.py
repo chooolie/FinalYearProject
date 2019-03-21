@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, redirect
 from .models import Movie, TopMovies, UserDemographics, UserRatings
+from accounts.models import UserProfile
 from tmdbv3api import TMDb
 import pandas as pd
 from tmdbv3api import Movie as tmdb_movie
@@ -30,9 +31,29 @@ def Top10(request):
     return render(request, template_name, args)
 
 def Recommendations(request):
+    current_user = request.user.id
     template_name ='movies/recommendations.html'
     top_movies = TopMovies.objects.all()
-    args = {'top_movies': top_movies}
+    user_info = UserProfile.objects.filter(user_id=current_user)
+    for user in user_info:
+        user_age = user.Age
+        user_occupation = user.Occupation
+        user_gender = user.Gender
+    rec_movies = age_occupation(user_age, user_occupation)
+    movies = []
+    for mov in rec_movies:
+        movies.append(mov[5])
+    rec_movies2 = gender_age(user_age,user_gender)
+    movies2= []
+    for mov in rec_movies2:
+        movies2.append(mov[5])
+
+    rec_movies3 = gender_occupation(user_gender, user_occupation)
+    movies3= []
+    for mov in rec_movies3:
+        movies3.append(mov[5])
+
+    args = {'top_movies': top_movies, 'user_info':user_info, 'movies':movies, 'movies2':movies2, 'movies3':movies3}
     return render(request, template_name, args)
 
 def MovieDetails(request, pk):
@@ -59,6 +80,7 @@ def MovieDetails(request, pk):
     args = {'m':m, 'image':image, "lists":lists, "list_data":list_data, "list_id":list_id}
     return render(request, template_name,args)
 
+
 def SimilarMovies(Movie_Id):
     ratings = pd.read_csv("data/ratings.csv")
     movies = pd.read_csv("data/movies.csv")
@@ -76,5 +98,65 @@ def SimilarMovies(Movie_Id):
     sim = pd.merge(similar, links, on='movieId')
     sim = pd.merge(sim, movies, on='movieId')
     lists = sim['title'].values
+    sim = sim.values
+    return sim
+
+def age_occupation(age,occupation):
+    users = pd.read_csv("data/users.csv")
+    ratings = pd.read_csv("data/ratings.csv")
+    movies = pd.read_csv("data/movies.csv")
+    ratings2 = pd.merge(movies, ratings, on = 'movieId')
+    information = pd.merge(ratings, users, on='userId')
+    user_demo = information.loc[(information.Occupation == occupation)&(information.rating >= 2.5)&(information.Age == age)]
+    movie_data = pd.merge(ratings, movies, on='movieId')
+    ratings_mean_count = pd.DataFrame(movie_data.groupby('title')['rating'].mean())
+    ratings_mean_count['rating_counts'] = pd.DataFrame(movie_data.groupby('title')['rating'].count())
+    user_avg_rating = pd.DataFrame(user_demo.groupby('movieId')['rating'].mean())
+    user_avg_rating['count_ratings'] = user_demo.groupby('movieId')['rating'].count()
+    hundred_most_voted = user_avg_rating.sort_values('count_ratings', ascending=False).head(50)
+    top_10 = hundred_most_voted.sort_values('rating', ascending=False).head(10)
+    links = pd.read_csv("data/links.csv")
+    sim = pd.merge(top_10, links, on='movieId')
+    sim = pd.merge(sim, movies, on='movieId')
+    sim = sim.values
+    return sim
+
+def gender_age(age,gender):
+    users = pd.read_csv("data/users.csv")
+    ratings = pd.read_csv("data/ratings.csv")
+    movies = pd.read_csv("data/movies.csv")
+    ratings2 = pd.merge(movies, ratings, on = 'movieId')
+    information = pd.merge(ratings, users, on='userId')
+    user_demo = information.loc[(information.Gender == gender)&(information.rating >= 2.5)&(information.Age == age)]
+    movie_data = pd.merge(ratings, movies, on='movieId')
+    ratings_mean_count = pd.DataFrame(movie_data.groupby('title')['rating'].mean())
+    ratings_mean_count['rating_counts'] = pd.DataFrame(movie_data.groupby('title')['rating'].count())
+    user_avg_rating = pd.DataFrame(user_demo.groupby('movieId')['rating'].mean())
+    user_avg_rating['count_ratings'] = user_demo.groupby('movieId')['rating'].count()
+    hundred_most_voted = user_avg_rating.sort_values('count_ratings', ascending=False).head(50)
+    top_10 = hundred_most_voted.sort_values('rating', ascending=False).head(10)
+    links = pd.read_csv("data/links.csv")
+    sim = pd.merge(top_10, links, on='movieId')
+    sim = pd.merge(sim, movies, on='movieId')
+    sim = sim.values
+    return sim
+
+def gender_occupation(gender,occupation):
+    users = pd.read_csv("data/users.csv")
+    ratings = pd.read_csv("data/ratings.csv")
+    movies = pd.read_csv("data/movies.csv")
+    ratings2 = pd.merge(movies, ratings, on = 'movieId')
+    information = pd.merge(ratings, users, on='userId')
+    user_demo = information.loc[(information.Occupation == occupation)&(information.rating >= 3)&(information.Gender == gender)]
+    movie_data = pd.merge(ratings, movies, on='movieId')
+    ratings_mean_count = pd.DataFrame(movie_data.groupby('title')['rating'].mean())
+    ratings_mean_count['rating_counts'] = pd.DataFrame(movie_data.groupby('title')['rating'].count())
+    user_avg_rating = pd.DataFrame(user_demo.groupby('movieId')['rating'].mean())
+    user_avg_rating['count_ratings'] = user_demo.groupby('movieId')['rating'].count()
+    hundred_most_voted = user_avg_rating.sort_values('count_ratings', ascending=False).head(50)
+    top_10 = hundred_most_voted.sort_values('rating', ascending=False).head(10)
+    links = pd.read_csv("data/links.csv")
+    sim = pd.merge(top_10, links, on='movieId')
+    sim = pd.merge(sim, movies, on='movieId')
     sim = sim.values
     return sim

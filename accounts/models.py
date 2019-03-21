@@ -16,8 +16,7 @@ class UserProfile(models.Model):
     dublin = UserProfileManager()
     objects = models.Manager()
 
-    def __str__(self):
-        return self.user.id
+
 
 def create_profile(sender, **kwargs):
     if kwargs['created']:

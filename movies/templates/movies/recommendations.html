@@ -1,4 +1,32 @@
 {% extends 'base.html' %}
 {% block body%}
-working
+  <h1 style="color:blue; text-align:center;">Demographical Recommendations</h1>
+<div class="container" id="holder">
+
+<h2>People your age and with your job also like</h2>
+{%for movie in movies%}
+<div class="">
+  {{ forloop.counter }}.  {{movie}}
+  <p></p>
+</div>
+{%endfor%}
+
+<p></p>
+<h2>People your age and gender like </h2>
+{%for movie in movies2%}
+<div class="">
+  {{ forloop.counter }}.  {{movie}}
+  <p></p>
+</div>
+{%endfor%}
+
+<h2>People you gender and occupation like</h2>
+{%for movie in movies3%}
+<div class="">
+  {{ forloop.counter }}.{{movie}}
+  <p></p>
+</div>
+{%endfor%}
+
 {% endblock %}
+</div>
