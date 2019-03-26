@@ -15,7 +15,7 @@ AGE_CHOICES = (
 )
 
 JOB_CHOICES = (
-    ("K-12student", _("K-12student")),
+    ("K-12student", _("School Student")),
     ("self-employed", _("Self Employed")),
     ("scientist", _("Scientist")),
     ("executive/managerial", _("Executive or Managerial")),

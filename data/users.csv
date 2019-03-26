@@ -612,3 +612,22 @@ userId,Gender,Age,Occupation
 611,F,18-24,college/grad student
 612,M,18-24,college/grad student
 613,F,18-24,programmer
+614,O,18-24,college/grad student
+615,O,18-24,college/grad student
+616,O,18-24,college/grad student
+617,O,18-24,artist
+618,O,18-24,customer_service
+619,O,25-34,artist
+620,O,25-34,writer
+621,O,25-34,academic/educator
+622,O,35-44,artist
+623,O,Under18,K-12student
+624,O,Under18,K-12student
+625,O,Under18,K-12student
+626,O,Under18,K-12student
+627,O,18-24,writer
+628,O,18-24,programmer
+629,O,18-24,other
+630,O,25-34,college/grad student
+631,O,25-34,other
+632,O,25-34,artist

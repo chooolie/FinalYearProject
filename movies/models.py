@@ -1,5 +1,6 @@
 from django.db import models
-
+from .choices import *
+from accounts.models import UserProfile
 # Create your models here.
 class Movie(models.Model):
 	movie_id = models.IntegerField("id",primary_key=True)
@@ -31,17 +32,10 @@ class UserDemographics(models.Model):
 	Occupation = models.CharField("job", max_length= 100, default="other")
 
 class UserRatings(models.Model):
-	userdemo_id = models.ForeignKey(UserDemographics, default = 1, on_delete=models.CASCADE )
-	movie_id = models.ForeignKey(Movie, on_delete=models.CASCADE)
-	rating =  models.IntegerField("rating",default = 2)
+	user = models.ForeignKey(UserProfile, default = 1, on_delete=models.CASCADE )
+	movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+	rating =  models.FloatField(choices=RATING_CHOICE,default = 2.5)
 	tmdbId =  models.IntegerField("TmdbId",default = 1)
 
-'''
-class NewUserDemographics(models.Model):
-	username = models.CharField(Auth.User)
-	Gender = models.CharField("gender", max_length=2, default="M")
-	Age = models.CharField("age", max_length=50, default="18-24")
-	Occupation = models.CharField("job", max_length= 100, default="other")
-
-'''
-#exec(open('get_movies.py').read())
+	class Meta:
+		unique_together = ("user", "movie")

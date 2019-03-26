@@ -59,6 +59,17 @@
 
 </div>
 
+<div class="">
+  <form method="post" class="form-group">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class = "btn btn-default" type="submit">login</button>
+
+    <!-- csrf token allows for safe log in-- then form as paragraph-->
+  </form>
+  <br>
+</div>
+
 
 
 </div>

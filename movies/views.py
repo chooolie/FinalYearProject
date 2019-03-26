@@ -15,7 +15,7 @@ import warnings
 from scipy.spatial.distance import cosine
 from django.http import HttpResponse
 warnings.filterwarnings('ignore')
-
+from .forms import *
 
 def MovieView(request):
     template_name = 'movies/movies.html'
@@ -24,6 +24,7 @@ def MovieView(request):
     args = {'movies': movies, 'ratings':ratings}
     return render(request, template_name, args)
 
+
 def Top10(request):
     template_name = 'movies/movie_list.html'
     top_movies = TopMovies.objects.all()
@@ -31,9 +32,9 @@ def Top10(request):
     return render(request, template_name, args)
 
 def Recommendations(request):
-    current_user = request.user.id
     template_name ='movies/recommendations.html'
     top_movies = TopMovies.objects.all()
+    current_user = request.user.id
     user_info = UserProfile.objects.filter(user_id=current_user)
     for user in user_info:
         user_age = user.Age
@@ -43,6 +44,7 @@ def Recommendations(request):
     movies = []
     for mov in rec_movies:
         movies.append(mov[5])
+
     rec_movies2 = gender_age(user_age,user_gender)
     movies2= []
     for mov in rec_movies2:
@@ -64,20 +66,27 @@ def MovieDetails(request, pk):
     movie = tmdb_movie()
     m = movie.details(pk)
     movie_id = 2
-    my_movies = Movie.objects.filter(movie_id=pk)
+    my_movies = Movie.objects.filter(tmdbId=pk)
     for movie in my_movies:
         movie_id = movie.movie_id
 
     lists = SimilarMovies(movie_id)
-    #lists = lists[0]
     list_data = []
     list_id = []
     for list in lists:
         list_data.append(list[5])
         list_id.append(int(list[4]))
     image = "https://image.tmdb.org/t/p/w1280"+ m.poster_path
+    form = RatingForm(request.POST)
+    if form.is_valid():
+        post = form.save(commit=False)
+        post.user = UserProfile.objects.get(user_id=request.user)
+        post.movie = Movie.objects.get(movie_id=movie_id)
+        post.tmdbId = pk
+        post.save()
+        return redirect('/account/profile')
 
-    args = {'m':m, 'image':image, "lists":lists, "list_data":list_data, "list_id":list_id}
+    args = {'m':m, 'image':image, "lists":lists, "list_data":list_data, "list_id":list_id, "movie_id":movie_id, "form":form}
     return render(request, template_name,args)
 
 
