@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block body%}
+
+{% for group in groups %}
+<div class="">
+    <h1>Group Name: {{group.group_name}}</h1>
+</div>
+
+
+
+{% endfor %}
+{% endblock %}

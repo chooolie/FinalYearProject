@@ -4,7 +4,7 @@ from django.template.loader import render_to_string
 from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, redirect
-from .models import Movie, TopMovies, UserDemographics, UserRatings
+from .models import Movie, TopMovies, UserDemographics, UserRatings,GroupInfo
 from accounts.models import UserProfile
 from tmdbv3api import TMDb
 import pandas as pd
@@ -12,10 +12,44 @@ from tmdbv3api import Movie as tmdb_movie
 import pandas as pd
 import numpy as np
 import warnings
+warnings.filterwarnings('ignore')
 from scipy.spatial.distance import cosine
 from django.http import HttpResponse
-warnings.filterwarnings('ignore')
 from .forms import *
+
+def GroupView(request):
+    template_name = 'movies/create_group.html'
+    form = CreateGroup(request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect('/account/profile')
+    args = {'form':form}
+    return render(request, template_name, args)
+
+def JoinGroup(request):
+    template_name = 'movies/join_group.html'
+    groups = GroupInfo.objects.order_by('group_name')
+    args = {'groups':groups}
+
+    return render(request, template_name, args)
+
+def JoinButton(request, pk):
+    g = GroupUsers(group = GroupInfo.objects.get(group_id=pk), user = UserProfile.objects.get(user_id=request.user))
+    g.save()
+    return redirect ('/movies/join_group')
+
+def ViewGroup(request, pk):
+    template_name = 'movies/group_details.html'
+    groups = GroupInfo.objects.filter(group_id=pk)
+    '''
+    form = JoinGroup(request.POST)
+    if form.is_valid():
+        form.user_id = UserProfile.objects.get(user_id=request.user)
+        form.group_id = GroupInfo.objects.filter(group_id=pk)
+        form.save()
+    '''
+    #args = {'form':form}
+    return render(request, template_name)
 
 def MovieView(request):
     template_name = 'movies/movies.html'

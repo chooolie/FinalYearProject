@@ -21,9 +21,6 @@ class TopMovies(models.Model):
 	title = models.CharField("title", max_length=300, default= 'N/A')
 	genre = models.CharField("genres", default="", max_length=300)
 
-#Will eventually be linked to users on the web app
-#However dont have these users signed up yet
-#Made it into its own ID for the training data
 
 class UserDemographics(models.Model):
 	userdemo_id = models.IntegerField("id", primary_key=True)
@@ -39,3 +36,14 @@ class UserRatings(models.Model):
 
 	class Meta:
 		unique_together = ("user", "movie")
+
+
+class GroupInfo(models.Model):
+	group_id = models.IntegerField("id", primary_key=True)
+	group_name = models.CharField("name", max_length=50, unique=True )
+
+class GroupUsers(models.Model):
+	group =  models.ForeignKey(GroupInfo, on_delete=models.CASCADE )
+	user =   models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+	class Meta:
+		unique_together = ("user", "group")

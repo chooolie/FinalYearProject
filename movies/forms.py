@@ -9,3 +9,16 @@ class RatingForm(forms.ModelForm):
 	class Meta:
 		model = UserRatings
 		fields = ('rating',)
+
+class CreateGroup(forms.ModelForm):
+	group_name = models.CharField(max_length=50)
+	class Meta:
+		model = GroupInfo
+		fields = ('group_name',)
+
+'''
+class JoinGroup(forms.ModelForm):
+	class Meta:
+		model = GroupUsers
+		fields = (,)
+'''
