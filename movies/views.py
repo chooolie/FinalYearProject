@@ -4,7 +4,9 @@ from django.template.loader import render_to_string
 from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, redirect
-from .models import Movie, TopMovies, UserDemographics, UserRatings,GroupInfo
+from .models import Movie, TopMovies, UserDemographics, UserRatings,GroupInfo, GroupUsers, GroupMovieList
+from .recommender import age_occupation, gender_age, gender_occupation, SimilarMovies
+from .group_recommender import group_rec
 from accounts.models import UserProfile
 from tmdbv3api import TMDb
 import pandas as pd
@@ -16,6 +18,11 @@ warnings.filterwarnings('ignore')
 from scipy.spatial.distance import cosine
 from django.http import HttpResponse
 from .forms import *
+from collections import Counter
+from simple_search import search_filter
+import operator
+from django.db.models import Q
+
 
 def GroupView(request):
     template_name = 'movies/create_group.html'
@@ -34,30 +41,59 @@ def JoinGroup(request):
     return render(request, template_name, args)
 
 def JoinButton(request, pk):
-    g = GroupUsers(group = GroupInfo.objects.get(group_id=pk), user = UserProfile.objects.get(user_id=request.user))
+    g = GroupUsers(group = GroupInfo.objects.get(group_id=pk), user = UserProfile.objects.get(user_id=request.user), user_name = request.user.first_name)
     g.save()
     return redirect ('/movies/join_group')
 
 def ViewGroup(request, pk):
+    #pk is group id
     template_name = 'movies/group_details.html'
-    groups = GroupInfo.objects.filter(group_id=pk)
-    '''
-    form = JoinGroup(request.POST)
-    if form.is_valid():
-        form.user_id = UserProfile.objects.get(user_id=request.user)
-        form.group_id = GroupInfo.objects.filter(group_id=pk)
-        form.save()
-    '''
-    #args = {'form':form}
-    return render(request, template_name)
+    tmdb = TMDb()
+    tmdb.api_key = '69c1026aa20e6449c7a0f74f69dffd7d'
+    tmdb.language = 'en'
+    people = GroupUsers.objects.filter(group_id=pk)
+    group_name = GroupInfo.objects.filter(group_id=pk)
+    group_movies = GroupMovieList.objects.filter(group_id=pk)
+    m = []
+    for movie in group_movies:
+        my_movies = Movie.objects.filter(movie_id=movie.movie_id)
+        for mov in my_movies:
+            tmdbId = mov.tmdbId
+        movs = tmdb_movie()
+        m.append(movs.details(tmdbId))
+
+
+    merging = []
+    for user in people:
+        u_id = user.user_id
+        user_info = UserProfile.objects.filter(id=u_id)
+        for users in user_info:
+            user_age = users.Age
+            user_occupation = users.Occupation
+        rec_movs = group_rec(user_age, user_occupation)
+        rec_movs = rec_movs.index.values.tolist()
+        merging.extend(rec_movs)
+    all_mov= [word for word, word_count in Counter(merging).most_common(10)]
+
+    args = {'people':people, 'group_name':group_name, 'group_movies':group_movies, 'm':m, 'merging':merging,'all_mov':all_mov}
+    return render(request, template_name,args)
 
 def MovieView(request):
+    #DISPLAY ALL MOVIES IN ALPHABETICAL ORDER
     template_name = 'movies/movies.html'
-    movies = Movie.objects.order_by('name')
+    #movies = Movie.objects.order_by('name')
+    #movies = Movie.objects.filter(name__contains='avengers')
+    movies = Movie.objects.all()
     ratings = UserRatings.objects.all()
     args = {'movies': movies, 'ratings':ratings}
     return render(request, template_name, args)
 
+def SearchMovies(request):
+    template_name = 'movies/search.html'
+    query = request.GET['search_query']
+    movies = Movie.objects.filter(name__contains=query)
+    args = {'movies': movies}
+    return render(request, template_name, args)
 
 def Top10(request):
     template_name = 'movies/movie_list.html'
@@ -111,7 +147,7 @@ def MovieDetails(request, pk):
         list_data.append(list[5])
         list_id.append(int(list[4]))
     image = "https://image.tmdb.org/t/p/w1280"+ m.poster_path
-    form = RatingForm(request.POST)
+    form = RatingForm(request.POST or None)
     if form.is_valid():
         post = form.save(commit=False)
         post.user = UserProfile.objects.get(user_id=request.user)
@@ -120,86 +156,13 @@ def MovieDetails(request, pk):
         post.save()
         return redirect('/account/profile')
 
-    args = {'m':m, 'image':image, "lists":lists, "list_data":list_data, "list_id":list_id, "movie_id":movie_id, "form":form}
+    movie_form = AddMovieToGroup(request.POST or None)
+    if movie_form.is_valid():
+        post2 = movie_form.save(commit=False)
+        post2.user = UserProfile.objects.get(user_id=request.user)
+        post2.movie = Movie.objects.get(movie_id=movie_id)
+        post2.save()
+        return redirect('/account/profile')
+
+    args = {'m':m, 'image':image, "lists":lists, "list_data":list_data, "list_id":list_id, "movie_id":movie_id, "form":form, "movie_form":movie_form}
     return render(request, template_name,args)
-
-
-def SimilarMovies(Movie_Id):
-    ratings = pd.read_csv("data/ratings.csv")
-    movies = pd.read_csv("data/movies.csv")
-    ratings = pd.merge(ratings, movies, on='movieId')
-    avg_rating = pd.DataFrame(ratings.groupby('movieId')['rating'].mean())
-    avg_rating['count_ratings'] = ratings.groupby('movieId')['rating'].count()
-    ratings_matrix = ratings.pivot_table(index='userId', columns='movieId', values='rating')
-    user_rating = ratings_matrix[Movie_Id]
-    similar_to = ratings_matrix.corrwith(user_rating)
-    corr = pd.DataFrame(similar_to, columns=['Correlation'])
-    corr.dropna(inplace=True)
-    corr = corr.join(avg_rating['count_ratings'])
-    similar = corr[corr['count_ratings'] > 50].sort_values(by='Correlation', ascending=False).head(10)
-    links = pd.read_csv("data/links.csv")
-    sim = pd.merge(similar, links, on='movieId')
-    sim = pd.merge(sim, movies, on='movieId')
-    lists = sim['title'].values
-    sim = sim.values
-    return sim
-
-def age_occupation(age,occupation):
-    users = pd.read_csv("data/users.csv")
-    ratings = pd.read_csv("data/ratings.csv")
-    movies = pd.read_csv("data/movies.csv")
-    ratings2 = pd.merge(movies, ratings, on = 'movieId')
-    information = pd.merge(ratings, users, on='userId')
-    user_demo = information.loc[(information.Occupation == occupation)&(information.rating >= 2.5)&(information.Age == age)]
-    movie_data = pd.merge(ratings, movies, on='movieId')
-    ratings_mean_count = pd.DataFrame(movie_data.groupby('title')['rating'].mean())
-    ratings_mean_count['rating_counts'] = pd.DataFrame(movie_data.groupby('title')['rating'].count())
-    user_avg_rating = pd.DataFrame(user_demo.groupby('movieId')['rating'].mean())
-    user_avg_rating['count_ratings'] = user_demo.groupby('movieId')['rating'].count()
-    hundred_most_voted = user_avg_rating.sort_values('count_ratings', ascending=False).head(50)
-    top_10 = hundred_most_voted.sort_values('rating', ascending=False).head(10)
-    links = pd.read_csv("data/links.csv")
-    sim = pd.merge(top_10, links, on='movieId')
-    sim = pd.merge(sim, movies, on='movieId')
-    sim = sim.values
-    return sim
-
-def gender_age(age,gender):
-    users = pd.read_csv("data/users.csv")
-    ratings = pd.read_csv("data/ratings.csv")
-    movies = pd.read_csv("data/movies.csv")
-    ratings2 = pd.merge(movies, ratings, on = 'movieId')
-    information = pd.merge(ratings, users, on='userId')
-    user_demo = information.loc[(information.Gender == gender)&(information.rating >= 2.5)&(information.Age == age)]
-    movie_data = pd.merge(ratings, movies, on='movieId')
-    ratings_mean_count = pd.DataFrame(movie_data.groupby('title')['rating'].mean())
-    ratings_mean_count['rating_counts'] = pd.DataFrame(movie_data.groupby('title')['rating'].count())
-    user_avg_rating = pd.DataFrame(user_demo.groupby('movieId')['rating'].mean())
-    user_avg_rating['count_ratings'] = user_demo.groupby('movieId')['rating'].count()
-    hundred_most_voted = user_avg_rating.sort_values('count_ratings', ascending=False).head(50)
-    top_10 = hundred_most_voted.sort_values('rating', ascending=False).head(10)
-    links = pd.read_csv("data/links.csv")
-    sim = pd.merge(top_10, links, on='movieId')
-    sim = pd.merge(sim, movies, on='movieId')
-    sim = sim.values
-    return sim
-
-def gender_occupation(gender,occupation):
-    users = pd.read_csv("data/users.csv")
-    ratings = pd.read_csv("data/ratings.csv")
-    movies = pd.read_csv("data/movies.csv")
-    ratings2 = pd.merge(movies, ratings, on = 'movieId')
-    information = pd.merge(ratings, users, on='userId')
-    user_demo = information.loc[(information.Occupation == occupation)&(information.rating >= 3)&(information.Gender == gender)]
-    movie_data = pd.merge(ratings, movies, on='movieId')
-    ratings_mean_count = pd.DataFrame(movie_data.groupby('title')['rating'].mean())
-    ratings_mean_count['rating_counts'] = pd.DataFrame(movie_data.groupby('title')['rating'].count())
-    user_avg_rating = pd.DataFrame(user_demo.groupby('movieId')['rating'].mean())
-    user_avg_rating['count_ratings'] = user_demo.groupby('movieId')['rating'].count()
-    hundred_most_voted = user_avg_rating.sort_values('count_ratings', ascending=False).head(50)
-    top_10 = hundred_most_voted.sort_values('rating', ascending=False).head(10)
-    links = pd.read_csv("data/links.csv")
-    sim = pd.merge(top_10, links, on='movieId')
-    sim = pd.merge(sim, movies, on='movieId')
-    sim = sim.values
-    return sim

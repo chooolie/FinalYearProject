@@ -41,9 +41,19 @@ class UserRatings(models.Model):
 class GroupInfo(models.Model):
 	group_id = models.IntegerField("id", primary_key=True)
 	group_name = models.CharField("name", max_length=50, unique=True )
+	def __str__(self):
+	   return self.group_name
 
 class GroupUsers(models.Model):
 	group =  models.ForeignKey(GroupInfo, on_delete=models.CASCADE )
 	user =   models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+	user_name = models.CharField("name", max_length=100, default="jane doe")
 	class Meta:
 		unique_together = ("user", "group")
+
+class GroupMovieList(models.Model):
+	group =  models.ForeignKey(GroupInfo,choices = GroupInfo._meta.get_field('group_name').choices, on_delete=models.CASCADE )
+	user =   models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+	movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+	class Meta:
+		unique_together = ("movie", "group")

@@ -1,19 +1,7 @@
 {% extends 'base.html' %}
 
 {% block body%}
-<style media="screen">
 
-
-.btn-circle {
-    width: 40px;
-    height: 40px;
-    padding: 6px 0px;
-    border-radius: 25px;
-    text-align: center;
-    font-size: 20px;
-    line-height: 1.42857;
-}
-</style>
 
 <div id = "holder" class="container">
   <div class="">
@@ -23,9 +11,9 @@
     <div class="col-3" >
       <img src={{image}} alt="Movie Thumbnail" height="90%" width="90%">
   </div>
-    <div class="col-8" style = "font-size:35px;font-weight:bold; color:black;">
+    <div class="col-5" style = "font-size:35px;font-weight:bold; color:black;">
         {{m.title}}
-        <div class="col-10" style = "font-size:15px;">
+        <div class="col-8" style = "font-size:15px;">
             Release Date:{{m.release_date}}
         </div>
         <div class="col-10" style = "font-size:15px;">
@@ -33,11 +21,33 @@
           {{m.overview}}
         </div>
     </div>
-    <div class="col-1">
-      <button type="button" name="button" class="btn btn-primary btn-circle""><i class="fa fa-plus"></i></button>
+
+    <div class="col-4">
+      <form method="post" class="form-group">
+        {% csrf_token %}
+
+       {{movie_form  }}
+
+        <button type="submit" name="button" class="btn btn-primary btn-circle"">Add To Group</button>
+
+        <!-- csrf token allows for safe log in-- then form as paragraph-->
+      </form>
+      <br>
     </div>
-    <div class="col-3" style="font-weight:bold">
-     <span class="fa fa-star" style="color:yellow"></span> Rating: {{m.vote_average}}/10 <span class="fa fa-star" style="color:yellow"></span>
+
+
+
+    <div class="col-5" style="font-weight:bold">
+     <span class="fa fa-star" style="color:yellow"></span>
+      Rating: {{m.vote_average}}/10
+      <span class="fa fa-star" style="color:yellow"></span>
+      <form method="post" class="form-group">
+        {% csrf_token %}
+        {{form}}
+        <button class = "btn btn-primary" type="submit">Rate Movie</button>
+
+        <!-- csrf token allows for safe log in-- then form as paragraph-->
+      </form>
     </div>
 
     </div>
@@ -59,18 +69,11 @@
 
 </div>
 
-<div class="">
-  <form method="post" class="form-group">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button class = "btn btn-default" type="submit">Rate Movie</button>
 
-    <!-- csrf token allows for safe log in-- then form as paragraph-->
-  </form>
+<div class="">
+
   <br>
 </div>
-
-
 
 </div>
 {% endblock %}

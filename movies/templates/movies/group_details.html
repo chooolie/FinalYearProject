@@ -1,12 +1,49 @@
 {% extends 'base.html' %}
 {% block body%}
 
-{% for group in groups %}
-<div class="">
-    <h1>Group Name: {{group.group_name}}</h1>
+<h1 style="color:blue; text-align:center;">
+
+{% for name in group_name%}
+   Welcome to group {{name.group_name}}
+{%endfor%}
+ </h1>
+<br>
+
+<div class="container" id="holder">
+
+  <div class="row">
+    <div class="col-8">
+    <h3>Recommended Movies</h3>
+    </div>
+    <div class="col-4" style="font-size:18px" >
+    <h3>  Users in this group</h3>
+    </div>
+    <div class="col-8">
+
+      {% for merge in all_mov%}
+      <p></p>
+    {{ forloop.counter }}.{{merge}}
+      {% endfor%}
+    </div>
+      <div class="col-4" >
+    {% for p in people %}
+<p></p>
+      {{ forloop.counter }}. {{p.user_name}}
+
+    {% endfor%}
+        </div>
+    <div class="col-8">
+  <h3>Group watch list</h3>
+    {% for movie in m%}
+      <p></p>
+    {{ forloop.counter }}.{{movie.title}}
+
+    {% endfor %}
+    </div>
+
+  </div>
+<p></p>
+<br>
 </div>
 
-
-
-{% endfor %}
 {% endblock %}
