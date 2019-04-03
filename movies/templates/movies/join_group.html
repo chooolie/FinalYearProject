@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block body%}
+
+<div id = "holder" class="container" style= "width: 50%">
+<br>
+<div class="row">
+  <div class="col-3">
+
+  </div>
+  <div class="col-7" style = "font-size:35px;font-weight:bold;" > All groups</div>
+</div>
+
+<br>
+{% for group in groups %}
+<div class="col-sm" style="font-size:20px;">
+    Group name:   {{group.group_name}}
+  <a href="{% url 'view_group' pk=group.group_id %}" style = "color:black">
+      <button type="button" class = "btn btn-primary" >View group</button>
+  </a>
+  <a href="{% url 'join_button' pk=group.group_id  %}">
+    <button type="button" class = "btn btn-primary" >Join Group</button>
+  </a>
+</div>
+<br>
+
+{% endfor %}
+</div>
+{% endblock %}

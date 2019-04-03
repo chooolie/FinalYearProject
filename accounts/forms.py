@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-
+from accounts.choices import *
+from .models import *
 #Used to edit any forms
 
 class RegistrationForm(UserCreationForm):
@@ -46,3 +47,13 @@ class EditProfileForm(UserChangeForm):
         'email',
         'password'
         )
+
+
+class UserDemoForm(forms.ModelForm):
+    Gender = forms.ChoiceField(choices = GENDER_CHOICES, label="Gender:", widget=forms.Select(), required=True)
+    Age = forms.ChoiceField(choices = AGE_CHOICES, required=True)
+    Occupation = forms.ChoiceField(choices = JOB_CHOICES, required=True)
+
+    class Meta:
+        model = UserProfile
+        fields = ('Gender', 'Age', 'Occupation' )

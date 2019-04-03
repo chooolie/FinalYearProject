@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block body%}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.checked {
+  color: orange;
+}
+</style>
+<h1 style="color:blue; text-align:center;"> Top 10 movies</h1>
+<br>
+
+<div class="container" id="holder">
+  {% for movie in top_movies %}
+  <div class="row">
+    <div class="col-sm">
+        <a href="{% url 'view' pk=movie.tmdbId %}">
+          {{ forloop.counter }}.{{movie.title}}
+          </a>
+
+    </div>
+    <div class="col-sm">
+    {{movie.genre}}
+    </div>
+    <div class="col-sm">
+{{movie.rating|floatformat}}/5
+    </div>
+  </div>
+<p></p>
+{% endfor%}
+</div>
+
+{% endblock %}

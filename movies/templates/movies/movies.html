@@ -1,6 +1,42 @@
 {% extends 'base.html' %}
 {% block body%}
-<h1> It works yay</h1>
 
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <h2>All Movies</h2>
+    </div>
+    <div class="col-lg">
+
+      <form id="searchform" action="{% url 'searching' %}" method="get" accept-charset="utf-8">
+         <input class="searchfield" id="searchbox" name="search_query" type="text" placeholder="Search by movie name">
+         <button class="searchbutton" type="submit">
+           <i class="fa fa-search"></i>
+         </button>
+       </form>
+    </div>
+  </div>
+</div>
+
+
+<p></p>
+
+  <div  id = "holder" class="container" >
+{% for movie in movies %}
+
+  <div class="row">
+    <div class="col-sm" style="font-size:20px;">
+      <a href="{% url 'view' pk=movie.tmdbId %}" style = "color:black">
+         {{movie.name}}
+      </a>
+    </div>
+    <div class="col-sm" style="font-size:15px">
+    {{movie.genre}}
+    </div>
+  </div>
+
+<p></p>
+{% endfor%}
+</div>
 
 {% endblock %}
