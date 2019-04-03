@@ -1,3 +1,12 @@
+<!--
+Html to display the users recommendations
+Currently updated by recommender.py file from the Recommendations view
+This page is on the url recommendations/
+
+The view takes in the users in the groups demographics and
+recommends movies based on that.
+-->
+
 {% extends 'base.html' %}
 {% block body%}
   <h1 style="color:blue; text-align:center;">Your Recommendations</h1>
@@ -7,7 +16,7 @@
 <h2>You might like:</h2>
 {%for rec in recommendations%}
 <div class="">
-  {{ forloop.counter }}.{{rec}}
+    <a href="#">{{ forloop.counter }}.{{rec}}</a>
   <p></p>
 </div>
 {%endfor%}

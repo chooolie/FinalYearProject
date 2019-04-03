@@ -2,7 +2,9 @@ from django.db import models
 from .choices import *
 from accounts.models import UserProfile
 from django.contrib.auth.models import User
-# Create your models here.
+# All models for movie related information
+#Updates database and must run migrations to get to work
+
 class Movie(models.Model):
 	movie_id = models.IntegerField("id",primary_key=True)
 	tmdbId = models.IntegerField("id",default = 1)
@@ -13,7 +15,6 @@ class Movie(models.Model):
 CASCADE: When the referenced object is deleted,
 also delete the objects that have references to it
 '''
-
 class TopMovies(models.Model):
 	movie_id = models.ForeignKey(Movie, on_delete=models.CASCADE)
 	tmdbId = models.IntegerField("id",default = 1)
@@ -21,7 +22,6 @@ class TopMovies(models.Model):
 	count_ratings = models.IntegerField("count_ratings", default = 0)
 	title = models.CharField("title", max_length=300, default= 'N/A')
 	genre = models.CharField("genres", default="", max_length=300)
-
 
 class UserDemographics(models.Model):
 	userdemo_id = models.IntegerField("id", primary_key=True)
@@ -37,7 +37,6 @@ class UserRatings(models.Model):
 
 	class Meta:
 		unique_together = ("user", "movie")
-
 
 class GroupInfo(models.Model):
 	group_id = models.IntegerField("id", primary_key=True)

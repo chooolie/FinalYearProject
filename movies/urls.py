@@ -2,7 +2,7 @@ from django.conf.urls import url
 #from movies.views import MovieView
 
 from . import views
-
+#All the URLS for each view
 urlpatterns = [
     url(r'^view_movies/$',views.MovieView, name='movies'),
     url(r'^top10/$',views.Top10, name='top_movies'),
@@ -13,7 +13,4 @@ urlpatterns = [
     url(r'^group_details/(?P<pk>\d+)/$',views.ViewGroup, name='view_group'),
     url(r'^connect/(?P<pk>\d+)/$',views.JoinButton, name='join_button'),
     url(r'^searching/$',views.SearchMovies, name='searching'),
-
-
-
 ]
