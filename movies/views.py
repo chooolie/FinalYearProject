@@ -104,7 +104,6 @@ def Top10(request):
 
 def Recommendations(request):
     template_name ='movies/recommendations.html'
-    top_movies = TopMovies.objects.all()
     current_user = request.user.id
     user_info = UserProfile.objects.filter(user_id=current_user)
     for user in user_info:
@@ -126,18 +125,17 @@ def Recommendations(request):
     for mov in rec_movies3:
         movies3.append(mov[5])
 
+
     most_frequent = []
     most_frequent.extend(movies)
     most_frequent.extend(movies2)
     most_frequent.extend(movies3)
     recommendations = [word for word, word_count in Counter(most_frequent).most_common(10)]
-    args = {'top_movies': top_movies, 'user_info':user_info, 'movies':movies, 'movies2':movies2, 'movies3':movies3, 'recommendations':recommendations}
+
+    
+    args = { 'user_info':user_info, 'movies':movies, 'movies2':movies2, 'movies3':movies3, 'recommendations':recommendations, 'mov':mov}
     return render(request, template_name, args)
 
-def WatchList(request):
-    template_name = 'movies/watchlist.html'
-    args = {}
-    return render(request, template_name, args)
 
 def MovieDetails(request, pk):
     template_name = 'movies/movie_details.html'

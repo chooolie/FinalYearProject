@@ -38,9 +38,39 @@
 
 
     <div class="col-5" style="font-weight:bold">
-     <span class="fa fa-star" style="color:yellow"></span>
-      Rating: {{m.vote_average}}/10
-      <span class="fa fa-star" style="color:yellow"></span>
+      Rating:
+      {%if m.vote_average > 0 and m.vote_average < 2 %}
+      <span class="fa fa-star" style="color:#CCCC00"></span>  <span class="fa fa-star" style="color:#C0C0C0">
+       <span class="fa fa-star" style="color:#C0C0C0"></span>  <span class="fa fa-star" style="color:#C0C0C0"></span>
+       </span>  <span class="fa fa-star" style="color:#C0C0C0"></span>
+      {%endif%}
+
+      {%if m.vote_average > 2 and m.vote_average < 4 %}
+      <span class="fa fa-star" style="color:#CCCC00"></span>  <span class="fa fa-star" style="color:#CCCC00">
+       <span class="fa fa-star" style="color:#C0C0C0"></span>  <span class="fa fa-star" style="color:#C0C0C0"></span>
+       </span>  <span class="fa fa-star" style="color:#C0C0C0"></span>
+      {%endif%}
+
+      {%if m.vote_average > 4 and m.vote_average < 6 %}
+      <span class="fa fa-star" style="color:#CCCC00"></span>  <span class="fa fa-star" style="color:#CCCC00">
+       <span class="fa fa-star" style="color:#CCCC00"></span>  <span class="fa fa-star" style="color#C0C0C0"></span>
+       </span>  <span class="fa fa-star" style="color:#C0C0C0"></span>
+      {%endif%}
+      {%if m.vote_average > 6 and m.vote_average < 8 %}
+       <span class="fa fa-star" style="color:#CCCC00"></span>  <span class="fa fa-star" style="color:#CCCC00"></span>
+        <span class="fa fa-star" style="color:#CCCC00"></span>   <span class="fa fa-star" style="color:#CCCC00"></span>
+        </span>  <span class="fa fa-star" style="color:#C0C0C0"></span>
+      {%endif%}
+
+      {%if m.vote_average > 8 and m.vote_average < 10 %}
+       <span class="fa fa-star" style="color:#CCCC00"></span>  <span class="fa fa-star" style="color:#CCCC00">
+        <span class="fa fa-star" style="color:#CCCC00"></span>  <span class="fa fa-star" style="color:#CCCC00"></span>
+        </span>  <span class="fa fa-star" style="color:#CCCC00"></span>
+      {%endif%}
+      <p></p>
+
+
+
       <form method="post" class="form-group">
         {% csrf_token %}
         {{form}}
@@ -77,7 +107,5 @@
 
 </div>
 
-<a href="{% url 'watch_button' pk=movie_id  %}">
-  <button type="button" class = "btn btn-primary" >Add to watch list</button>
-</a>
+
 {% endblock %}
