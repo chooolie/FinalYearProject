@@ -20,8 +20,7 @@ class CreateGroup(forms.ModelForm):
 		fields = ('group_name',)
 
 class AddMovieToGroup(forms.ModelForm):
-	#group = models.CharField(choices=GroupInfo.objects.all())
-	#group = models.CharField(choices = GroupInfo._meta.get_field('group_name').choices)
+	#adding movie to a group by getting the group needed - this is on the movie page
 	group = models.CharField( choices = GroupInfo.objects.all().values_list('group_name', flat=True) )
 	#group = forms.ModelChoiceField(queryset=GroupInfo.filter(taken=False))
 	class Meta:
@@ -30,11 +29,3 @@ class AddMovieToGroup(forms.ModelForm):
 		labels = {
             "group": _("Select Group"),
         }
-
-#MyModel._meta.get_field('foo').choices
-'''
-class JoinGroup(forms.ModelForm):
-	class Meta:
-		model = GroupUsers
-		fields = (,)
-'''

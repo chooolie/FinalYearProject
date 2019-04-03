@@ -15,4 +15,5 @@ urlpatterns = [
     url(r'^searching/$',views.SearchMovies, name='searching'),
 
 
+
 ]

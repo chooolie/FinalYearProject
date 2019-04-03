@@ -1,6 +1,7 @@
 from django.db import models
 from .choices import *
 from accounts.models import UserProfile
+from django.contrib.auth.models import User
 # Create your models here.
 class Movie(models.Model):
 	movie_id = models.IntegerField("id",primary_key=True)
