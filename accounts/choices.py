@@ -1,4 +1,6 @@
 from django.utils.translation import gettext as _
+#All choices for any users adding to their demographic details
+
 GENDER_CHOICES = (
     ("F", _("Female")),
     ("M", _("Male")),
