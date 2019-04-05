@@ -22,8 +22,25 @@ from collections import Counter
 from simple_search import search_filter
 import operator
 from django.db.models import Q
+from django.db.models import F
 
+def GroupVoteButton(request, pk, group):
+    #This is used to give up votes to any movies added to the group movie list
+    #Gets the group id and movie id which are unique together to increment the vote field
+    mov = Movie.objects.get(tmdbId=pk)
+    m_id = mov.movie_id
+    m_details = GroupMovieList.objects.filter(group_id=group).filter(movie_id=m_id)
+    m_details.update(vote= F('vote') +1)
+    return redirect ('/movies/group_details/'+group)
 
+def DownVoteButton(request, pk, group):
+    #This is used to give down votes to any movies added to the group movie list
+    #Gets the group id and movie id which are unique together to decrement vote field
+    mov = Movie.objects.get(tmdbId=pk)
+    m_id = mov.movie_id
+    m_details = GroupMovieList.objects.filter(group_id=group).filter(movie_id=m_id)
+    m_details.update(vote= F('vote') -1)
+    return redirect ('/movies/group_details/'+group)
 
 def GroupView(request):
     #Contains the form to create a group - takes a group name
@@ -58,12 +75,18 @@ def ViewGroup(request, pk):
     group_name = GroupInfo.objects.filter(group_id=pk)
     group_movies = GroupMovieList.objects.filter(group_id=pk)
     m = []
+    vote_score = []
+    test = []
     for movie in group_movies:
+        vote_score.append(movie.vote)
         my_movies = Movie.objects.filter(movie_id=movie.movie_id)
         for mov in my_movies:
             tmdbId = mov.tmdbId
         movs = tmdb_movie()
         m.append(movs.details(tmdbId))
+
+    for index, i in enumerate(m):
+        test.append((i,vote_score[index]))
 
     merging = []
     for user in people:
@@ -77,7 +100,7 @@ def ViewGroup(request, pk):
         merging.extend(rec_movs)
     all_mov= [word for word, word_count in Counter(merging).most_common(10)]
     id = pk
-    args = {'id':id, 'people':people, 'group_name':group_name, 'group_movies':group_movies, 'm':m, 'merging':merging,'all_mov':all_mov }
+    args = {'id':id, 'test':test, 'people':people, 'group_name':group_name, 'group_movies':group_movies, 'm':m, 'merging':merging,'all_mov':all_mov }
     return render(request, template_name,args)
 
 def MovieView(request):

@@ -58,6 +58,6 @@ class GroupMovieList(models.Model):
 	group =  models.ForeignKey(GroupInfo,choices = GroupInfo._meta.get_field('group_name').choices, on_delete=models.CASCADE )
 	user =   models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 	movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-	vote = RatingField(can_change_vote=True)
+	vote = models.IntegerField("vote", default=0)
 	class Meta:
 		unique_together = ("movie", "group")

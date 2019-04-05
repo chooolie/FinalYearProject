@@ -51,14 +51,19 @@ It gets its information from the ViewGroup view
         </div>
     <div class="col-8">
   <h3>Group watch list</h3>
-    {% for movie in m%}
-      <p></p>
-    <a href="{% url 'view' pk=movie.id %}" style = "color:black">{{ forloop.counter }}.{{movie.title}}</a>
-    <button type="button" id="up" class="btn btn-primary fa fa-thumbs-up" onclick="incrementValue()"> 0</button>
-    <button type="button" id="down" class="btn btn-danger fa fa-thumbs-down" > 0 </button>
-    {% endfor %}
+  {% for tmdb, vote in test%}
+  <p></p>
+<a href="{% url 'view' pk=tmdb.id %}" style = "color:black">{{ forloop.counter }}.  {{tmdb.title}}</a>
+<a href ="{% url 'groupvote' pk=tmdb.id group=id %}"  type="button" id="up" style = "color:green" class="btn btn-danger fa fa-thumbs-up" > </a>
+<a class="" style ="color:black; font-size:20px">
+  {{vote}}
+</a>
+<a href ="{% url 'downvote' pk=tmdb.id group=id %}" type="button" id="down" style = "color:red" class="btn btn-danger fa fa-thumbs-down" > </a>
+  {% endfor %}
     <p></p>
     </div>
+
+
 
 
 <p></p>
