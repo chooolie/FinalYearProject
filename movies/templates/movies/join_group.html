@@ -5,7 +5,7 @@ This page is on the url join_group/
 It gets its information from the JoinGroup view
 
 -->
-
+{% extends 'base.html' %}
 {% block body%}
 
 <div id = "holder" class="container" style= "width: 50%">
@@ -21,7 +21,7 @@ It gets its information from the JoinGroup view
 {% for group in groups %}
 <div class="col-sm" style="font-size:20px;">
     Group name:   {{group.group_name}}
-  <a href="{% url 'view_group' pk=group.group_id %}" style = "color:black">
+  <a href="{% url 'view_group' pk=group.group_id %}">
       <button type="button" class = "btn btn-primary" >View group</button>
   </a>
   <a href="{% url 'join_button' pk=group.group_id  %}">

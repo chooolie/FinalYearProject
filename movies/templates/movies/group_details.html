@@ -8,6 +8,15 @@ It gets its information from the ViewGroup view
 
 {% extends 'base.html' %}
 {% block body%}
+<script>
+  function incrementValue()
+{
+    var value = parseInt(document.getElementById('number').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('number').value = value;
+}
+</script>
 
 <h1 style="color:blue; text-align:center;">
 
@@ -44,12 +53,14 @@ It gets its information from the ViewGroup view
   <h3>Group watch list</h3>
     {% for movie in m%}
       <p></p>
-    {{ forloop.counter }}.{{movie.title}}
-
+    <a href="{% url 'view' pk=movie.id %}" style = "color:black">{{ forloop.counter }}.{{movie.title}}</a>
+    <button type="button" id="up" class="btn btn-primary fa fa-thumbs-up" onclick="incrementValue()"> 0</button>
+    <button type="button" id="down" class="btn btn-danger fa fa-thumbs-down" > 0 </button>
     {% endfor %}
+    <p></p>
     </div>
 
-  </div>
+
 <p></p>
 <br>
 </div>

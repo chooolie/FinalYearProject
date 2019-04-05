@@ -14,12 +14,13 @@ recommends movies based on that.
 
 
 <h2>You might like:</h2>
-{%for rec in recommendations%}
+{%for mov in all_movies%}
 <div class="">
-    <a href="#">{{ forloop.counter }}.{{rec}}</a>
+    <a href="{% url 'view' pk=mov.3 %}"style = "color:black">{{ forloop.counter }}.{{mov.1}}</a>
   <p></p>
 </div>
 {%endfor%}
+
 
 
 {% endblock %}

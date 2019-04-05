@@ -23,7 +23,7 @@ It gets its information from the Top10 view
   {% for movie in top_movies %}
   <div class="row">
     <div class="col-sm">
-        <a href="{% url 'view' pk=movie.tmdbId %}">
+        <a href="{% url 'view' pk=movie.tmdbId %}" style = "color:black">
           {{ forloop.counter }}.{{movie.title}}
           </a>
 

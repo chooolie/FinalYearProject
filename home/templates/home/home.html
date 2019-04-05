@@ -1,7 +1,7 @@
 {% extends 'base.html'%}
 
 {% block body%}
-<div class="container">
+<div class="container" id = "holder">
   <div class="row">
   <div class="col-sm-8">
   <h2>Write any personal recommendations</h2>
@@ -9,7 +9,7 @@
     {% csrf_token%}
     {{form.post}}
     <br>
-    <button type="submit">Submit</button>
+    <button class = "btn btn-primary" type="submit">Submit</button>
     <h2>{{text}}</h2>
     {% for post in posts %}
       <h1>{{post.post}}</h1>

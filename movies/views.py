@@ -24,6 +24,7 @@ import operator
 from django.db.models import Q
 
 
+
 def GroupView(request):
     #Contains the form to create a group - takes a group name
     template_name = 'movies/create_group.html'
@@ -64,7 +65,6 @@ def ViewGroup(request, pk):
         movs = tmdb_movie()
         m.append(movs.details(tmdbId))
 
-
     merging = []
     for user in people:
         u_id = user.user_id
@@ -76,8 +76,8 @@ def ViewGroup(request, pk):
         rec_movs = rec_movs.index.values.tolist()
         merging.extend(rec_movs)
     all_mov= [word for word, word_count in Counter(merging).most_common(10)]
-
-    args = {'people':people, 'group_name':group_name, 'group_movies':group_movies, 'm':m, 'merging':merging,'all_mov':all_mov}
+    id = pk
+    args = {'id':id, 'people':people, 'group_name':group_name, 'group_movies':group_movies, 'm':m, 'merging':merging,'all_mov':all_mov }
     return render(request, template_name,args)
 
 def MovieView(request):
@@ -113,17 +113,17 @@ def Recommendations(request):
     rec_movies = age_occupation(user_age, user_occupation)
     movies = []
     for mov in rec_movies:
-        movies.append(mov[5])
+        movies.append(int(mov[4]))
 
     rec_movies2 = gender_age(user_age,user_gender)
     movies2= []
     for mov in rec_movies2:
-        movies2.append(mov[5])
+        movies2.append(int(mov[4]))
 
     rec_movies3 = gender_occupation(user_gender, user_occupation)
     movies3= []
     for mov in rec_movies3:
-        movies3.append(mov[5])
+        movies3.append(int(mov[4]))
 
 
     most_frequent = []
@@ -132,8 +132,17 @@ def Recommendations(request):
     most_frequent.extend(movies3)
     recommendations = [word for word, word_count in Counter(most_frequent).most_common(10)]
 
-    
-    args = { 'user_info':user_info, 'movies':movies, 'movies2':movies2, 'movies3':movies3, 'recommendations':recommendations, 'mov':mov}
+    all_movies = []
+    for mov in recommendations:
+        my_movies = Movie.objects.filter(tmdbId=mov)
+        for movie in my_movies:
+            movie_id = movie.movie_id
+            name = movie.name
+            genre = movie.genre
+            tmdb = movie.tmdbId
+        all_movies.append([movie_id,name,genre,tmdb])
+
+    args = { 'user_info':user_info, 'movies':movies, 'movies2':movies2, 'movies3':movies3, 'recommendations':recommendations, 'mov':mov, 'all_movies':all_movies}
     return render(request, template_name, args)
 
 

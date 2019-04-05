@@ -20,4 +20,5 @@ def group_rec(age,occupation):
     user_avg_rating['count_ratings'] = user_demo.groupby('title')['rating'].count()
     hundred_most_voted = user_avg_rating.sort_values('count_ratings', ascending=False).head(50)
     top_10 = hundred_most_voted.sort_values('rating', ascending=False).head(20)
+    
     return top_10

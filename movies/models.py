@@ -2,6 +2,9 @@ from django.db import models
 from .choices import *
 from accounts.models import UserProfile
 from django.contrib.auth.models import User
+from updown.fields import RatingField
+
+
 # All models for movie related information
 #Updates database and must run migrations to get to work
 
@@ -55,5 +58,6 @@ class GroupMovieList(models.Model):
 	group =  models.ForeignKey(GroupInfo,choices = GroupInfo._meta.get_field('group_name').choices, on_delete=models.CASCADE )
 	user =   models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 	movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+	vote = RatingField(can_change_vote=True)
 	class Meta:
 		unique_together = ("movie", "group")

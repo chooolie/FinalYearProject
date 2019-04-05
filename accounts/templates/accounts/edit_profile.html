@@ -5,13 +5,13 @@
 {% endblock %}
 
 {% block body %}
-<h1>fart</h1>
-<div class="container" id="holder">
+<div class="container" id="holder" style = "">
+    <h3>Change your details here</h3>
 <br>
     <form method="post">
       {%csrf_token%}
       {{form.as_p}}
-      <button type="submit">Submit</button>
+      <button class = "btn btn-primary" type="submit">Submit</button>
     </form>
     <br>
 </div>
