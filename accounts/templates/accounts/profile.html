@@ -16,13 +16,13 @@
       {% endif %}
     </div>
     <h2>User Details</h2>
-    <p>Username = {{user}}</p>
-    <p>First Name = {{ user.first_name }}</p>
-    <p>Last name ={{user.last_name}} </p>
-    <p>Email = {{user.email}}</p>
-    <p>Age: {{user.userprofile.Age}}</p>
-    <p>Gender: {{user.userprofile.Gender}}</p>
-    <p>Occupation: {{user.userprofile.Occupation}}</p>
+    <p><b>Username </b>: {{user}}</p>
+    <p><b>First Name</b>: {{ user.first_name }}</p>
+    <p><b>Last name</b>: {{user.last_name}} </p>
+    <p><b>Email</b>: {{user.email}}</p>
+    <p><b>Age</b>: {{user.userprofile.Age}}</p>
+    <p><b>Gender</b>: {{user.userprofile.Gender}}</p>
+    <p><b>Occupation</b>: {{user.userprofile.Occupation}}</p>
     {% if user.userprofile.image %}
     <img src="{{user.userprofile.image.url}}" alt = "profile picture" width="240">
     {% endif %}

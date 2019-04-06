@@ -16,11 +16,13 @@ It gets its information from the Top10 view
   color: orange;
 }
 </style>
-<h1 style="color:blue; text-align:center;"> Top 10 movies</h1>
-<br>
+
 
 <div class="container" id="holder">
+  <u><h2>Top 10 movies:</h2></u>
+
   {% for movie in top_movies %}
+
   <div class="row">
     <div class="col-sm">
         <a href="{% url 'view' pk=movie.tmdbId %}" style = "color:black">
@@ -37,6 +39,7 @@ It gets its information from the Top10 view
   </div>
 <p></p>
 {% endfor%}
+<br>
 </div>
 
 {% endblock %}

@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {% block head %}
     <title>Profile</title>
 {% endblock %}
 
 {% block body %}
-<div class="container" id="holder" style= "width: 50%">
-  <h3>Add you details here</h3>
-  <br>
-    <form method="post" style>
+<div class="container" id="holder"  class="mx-auto"style= "width: 50%">
+<br>
+  <h2>Add you details here</h2>
+  
+    <form method="post"  class="form-group" >
       {%csrf_token%}
-  {{form.as_p}}
-      <button class = "btn btn-primary" type="submit">Submit</button>
+      {% crispy form %}
+      <br>
     </form>
     <br>
 </div>

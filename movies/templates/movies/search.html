@@ -12,15 +12,15 @@ It gets its information from the SearchMovies view
 <div class="container">
   <div class="row">
     <div class="col-sm">
-      <h2>All Movies</h2>
+
     </div>
     <div class="col-lg">
-
-      <form id="searchform" action="" method="get" accept-charset="utf-8">
-         <input class="searchfield" id="searchbox" name="search_query" type="text" placeholder="Search by movie name">
-         <button class="searchbutton" type="submit">
-           <i class="fa fa-search"></i>
-         </button>
+      <form id="searchform" action="{% url 'searching' %}" method="get" accept-charset="utf-8">
+        <div class="input-group md-form form-sm form-2 pl-0">
+            <input class="form-control  my-0 py-1 red-border" id="searchbox" name="search_query" type="text"  aria-label="Search" placeholder="Search by movie name">
+            <button class="searchbutton" type="submit">
+              <i class="fa fa-search text-blue" aria-hidden="true"></i>
+            </button>
        </form>
     </div>
   </div>
@@ -30,8 +30,8 @@ It gets its information from the SearchMovies view
 <p></p>
 
   <div  id = "holder" class="container" >
+    <u><h2>All Movies</h2></u>
 {% for movie in movies %}
-
   <div class="row">
     <div class="col-sm" style="font-size:20px;">
       <a href="{% url 'view' pk=movie.tmdbId %}" style = "color:black">

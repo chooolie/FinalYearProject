@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from accounts.choices import *
 from .models import *
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 #Used to edit any forms
 
 class RegistrationForm(UserCreationForm):
@@ -57,3 +59,10 @@ class UserDemoForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('Gender', 'Age', 'Occupation' )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'blueForms'
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', 'Save details'))

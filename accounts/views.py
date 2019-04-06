@@ -26,7 +26,7 @@ def register(request):
             password = password
             )
             login(request, user)
-            return redirect('/home')
+            return redirect('/account/adding_details/')
     else:
         form = RegistrationForm()
 

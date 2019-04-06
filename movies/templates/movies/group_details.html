@@ -8,32 +8,27 @@ It gets its information from the ViewGroup view
 
 {% extends 'base.html' %}
 {% block body%}
-<script>
-  function incrementValue()
-{
-    var value = parseInt(document.getElementById('number').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value++;
-    document.getElementById('number').value = value;
-}
-</script>
 
-<h1 style="color:blue; text-align:center;">
+
+
+<h1 style="color:black; text-align:center; ">
 
 {% for name in group_name%}
    Welcome to group {{name.group_name}}
-{%endfor%}
+   {%endfor%}
  </h1>
 <br>
+
+
 
 <div class="container" id="holder">
 
   <div class="row">
     <div class="col-8">
-    <h3>Recommended Movies</h3>
+    <u><h3>Recommended Movies</h3></u>
     </div>
-    <div class="col-4" style="font-size:18px" >
-    <h3>  Users in this group</h3>
+    <div class="col-4" style="font-size:18px; color:black" >
+    <u><h3>  Users in this group</h3></u>
     </div>
     <div class="col-8">
 
@@ -41,26 +36,36 @@ It gets its information from the ViewGroup view
       <p></p>
     {{ forloop.counter }}.{{merge}}
       {% endfor%}
+
     </div>
+
       <div class="col-4" >
     {% for p in people %}
 <p></p>
-      {{ forloop.counter }}. {{p.user_name}}
+      <a href="{% url 'view_other_user' pk=user.pk %}" style = "color:black">  {{ forloop.counter }}. {{p.user_name}} </a>
 
     {% endfor%}
         </div>
+
+
     <div class="col-8">
-  <h3>Group watch list</h3>
+      <br>
+  <u><h3>Group watch list</h3></u>
+
   {% for tmdb, vote in test%}
   <p></p>
-<a href="{% url 'view' pk=tmdb.id %}" style = "color:black">{{ forloop.counter }}.  {{tmdb.title}}</a>
-<a href ="{% url 'groupvote' pk=tmdb.id group=id %}"  type="button" id="up" style = "color:green" class="btn btn-danger fa fa-thumbs-up" > </a>
+<a href="{% url 'view' pk=tmdb.id %}" style = "color:black; ">{{ forloop.counter }}.  {{tmdb.title}}</a>
+<a href ="{% url 'groupvote' pk=tmdb.id group=id %}"  id="up" style = "color:green; background-color:lightblue;" class="btn btn-success fa fa-thumbs-up" > </a>
 <a class="" style ="color:black; font-size:20px">
   {{vote}}
 </a>
-<a href ="{% url 'downvote' pk=tmdb.id group=id %}" type="button" id="down" style = "color:red" class="btn btn-danger fa fa-thumbs-down" > </a>
+<a href ="{% url 'downvote' pk=tmdb.id group=id %}" type="" id="down" style = "color:red; background-color:lightblue;" class="btn btn-danger fa fa-thumbs-down" > </a>
+
+<a href ="{% url 'delete_movie' pk=tmdb.id group=id %}" type="" id="down" style = "color:black; background-color:lightblue;" class="btn btn-primary fa fa-trash" > </a>
+
   {% endfor %}
     <p></p>
+    <br>
     </div>
 
 
@@ -69,5 +74,12 @@ It gets its information from the ViewGroup view
 <p></p>
 <br>
 </div>
+</div>
+<p></p>
+{% for name in group_name%}
+
+<a href ="{% url 'leave_group' group=name.group_id %}" type="" id="down" style = "color:black; background-color:red;" class="btn btn-danger fa fa-trash" > Leave Group</a>
+{%endfor%}
+<p></p>
 
 {% endblock %}
