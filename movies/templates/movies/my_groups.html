@@ -14,23 +14,21 @@ It gets its information from the JoinGroup view
   <div class="col-1">
 
   </div>
-  <div class="col" style = "font-size:200%;" > <u>Group Name</u></div>
+  <div class="col" style = "font-size:200%;" >Group Name</div>
 <br>
   <div class="w-100"></div>
-{% for group in groups %}
+{% for group in my_groups %}
 <div class="col-1">
 
 </div>
-  <div class="col" style="font-size:20px; border-radius: 10px; background-color: #d9b38c	">
-      <i style = "font-size:120% ">{{group.group_name}}</i>
+  <div class="col" style="font-size:20px; border-radius: 25px; background-color: #e6ccb3	">
+      <i style = "font-size:120% ">{{group.group_id}}</i>
   </div>
   <div class="col">
       <a href="{% url 'view_group' pk=group.group_id %}">
         <button type="button" class = "btn btn-dark" >View group</button>
       </a>
-      <a href="{% url 'join_button' pk=group.group_id  %}">
-          <button type="button" class = "btn btn-dark" >Join Group</button>
-      </a>
+
 </div>
 
 

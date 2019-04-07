@@ -11,39 +11,42 @@ It gets its information from the ViewGroup view
 
 
 
-<h1 style="color:black; text-align:center; ">
 
-{% for name in group_name%}
-   Welcome to group {{name.group_name}}
-   {%endfor%}
- </h1>
 <br>
 
 
 
 <div class="container" id="holder">
+  <h1 style="color:black; text-align:center; ">
 
-  <div class="row">
+  {% for name in group_name%}
+     Welcome to group {{name.group_name}}
+     {%endfor%}
+   </h1>
+  <div class="row" >
     <div class="col-8">
     <u><h3>Recommended Movies</h3></u>
     </div>
-    <div class="col-4" style="font-size:18px; color:black" >
+    <div class="col-4"  >
     <u><h3>  Users in this group</h3></u>
     </div>
-    <div class="col-8">
+    <div class="col-8" >
 
       {% for merge in all_mov%}
       <p></p>
-    {{ forloop.counter }}.{{merge}}
+  <div class="col" style="border-radius: 10px; background-color: #d9b38c">
+   {{ forloop.counter }}.{{merge}}
+  </div>
       {% endfor%}
-
-    </div>
+  </div>
 
       <div class="col-4" >
     {% for p in people %}
-<p></p>
-      <a href="{% url 'view_other_user' pk=user.pk %}" style = "color:black">  {{ forloop.counter }}. {{p.user_name}} </a>
+    <p></p>
+    <div class="col" style="border-radius: 10px; background-color: #d9b38c">
+        <a href="{% url 'view_other_user' pk=user.pk %}" style = "color:black">  {{ forloop.counter }}. {{p.user_name}} </a>
 
+    </div>
     {% endfor%}
         </div>
 
@@ -54,21 +57,22 @@ It gets its information from the ViewGroup view
 
   {% for tmdb, vote in test%}
   <p></p>
+  <div class="col" style="border-radius: 10px; background-color: #d9b38c">
+
+
 <a href="{% url 'view' pk=tmdb.id %}" style = "color:black; ">{{ forloop.counter }}.  {{tmdb.title}}</a>
-<a href ="{% url 'groupvote' pk=tmdb.id group=id %}"  id="up" style = "color:green; background-color:lightblue;" class="btn btn-success fa fa-thumbs-up" > </a>
+<a href ="{% url 'groupvote' pk=tmdb.id group=id %}"  id="up" style = "color:brown; background-color:#d9b38c;" class="btn btn-dark fa fa-thumbs-up" > </a>
 <a class="" style ="color:black; font-size:20px">
   {{vote}}
 </a>
-<a href ="{% url 'downvote' pk=tmdb.id group=id %}" type="" id="down" style = "color:red; background-color:lightblue;" class="btn btn-danger fa fa-thumbs-down" > </a>
+<a href ="{% url 'downvote' pk=tmdb.id group=id %}" type="" id="down" style = "color:brown; background-color:#d9b38c;" class="btn btn-dark fa fa-thumbs-down" > </a>
 
-<a href ="{% url 'delete_movie' pk=tmdb.id group=id %}" type="" id="down" style = "color:black; background-color:lightblue;" class="btn btn-primary fa fa-trash" > </a>
-
+<a href ="{% url 'delete_movie' pk=tmdb.id group=id %}" type="" id="down" style = "color:black; background-color:#d9b38c;" class="btn btn-dark fa fa-trash" > </a>
+  </div>
   {% endfor %}
     <p></p>
     <br>
     </div>
-
-
 
 
 <p></p>
@@ -76,10 +80,10 @@ It gets its information from the ViewGroup view
 </div>
 </div>
 <p></p>
-{% for name in group_name%}
+  {% for name in group_name%}
 
-<a href ="{% url 'leave_group' group=name.group_id %}" type="" id="down" style = "color:black; background-color:red;" class="btn btn-danger fa fa-trash" > Leave Group</a>
-{%endfor%}
+  <a href ="{% url 'leave_group' group=name.group_id %}" type="" id="down" style = "color:#993333; background-color:#d9b38c;" class="btn btn-dark fa fa-trash" > Leave Group</a>
+  {%endfor%}
 <p></p>
 
 {% endblock %}

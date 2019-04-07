@@ -10,19 +10,19 @@ recommends movies based on that.
 {% extends 'base.html' %}
 {% block body%}
 
-<div class="container" id="holder">
+<div class="container" id="holder" >
 
 
 <u><h2>You might like:</h2></u>
 
 {%for mov in all_movies%}
-
-<div class="">
+<div class="row" style="border-radius: 1px; background-color: #d9b38c">
+  <div class="col-sm" style="font-size:100%;">
     <a href="{% url 'view' pk=mov.3 %}"style = "color:black">{{ forloop.counter }}.{{mov.1}}</a>
-<p></p>
 </div>
-
+</div>
+<br>
 {%endfor%}
 <br>
+
 {% endblock %}
-</div>

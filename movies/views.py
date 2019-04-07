@@ -48,6 +48,19 @@ def LeaveGroup(request, group):
     instance.delete()
     return redirect('/movies/join_group/')
 
+def MyGroups(request):
+    template_name = 'movies/my_groups.html'
+    user = UserProfile.objects.filter(user_id=request.user)
+    my_groups = GroupUsers.objects.filter(user_id=user)
+    groupid=[]
+    for group in my_groups:
+        groupid.append(group.group_id)
+
+
+    name_groups = GroupInfo.objects.filter(group_id=groupid)
+    args = {'my_groups':my_groups}
+    return render(request, template_name, args)
+
 def DownVoteButton(request, pk, group):
     #This is used to give down votes to any movies added to the group movie list
     #Gets the group id and movie id which are unique together to decrement vote field
@@ -105,7 +118,7 @@ def ViewGroup(request, pk):
             tmdbId = mov.tmdbId
         movs = tmdb_movie()
         m.append(movs.details(tmdbId))
-
+        #Appending the vote count to the TMDB api link of top movies
     for index, i in enumerate(m):
         test.append((i,vote_score[index]))
 

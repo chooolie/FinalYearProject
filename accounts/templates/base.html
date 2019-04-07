@@ -16,6 +16,13 @@
      <title>Base</title>
      <style>
 
+     body
+     {
+       /*background-image:url("http://clipart-library.com/images/8Tzr7BLXc.jpg");*/
+       background-image:url("https://content-static.upwork.com/blog/uploads/sites/3/2017/07/05112631/Website-background-video-tips-tricks-and-resources-feature-940x400.jpg");
+       background-repeat: no-repeat;
+        background-size: cover;
+     }
      li.dropdown {
        display: inline-block;
      }
@@ -45,7 +52,9 @@
 
      #holder {
        border-radius: 10px;
-       background-color: #B0E0E6;}
+       background-color: #d2a679;
+       opacity: 0.95;
+}
 
      </style>
 
@@ -54,17 +63,17 @@
 
     <body>
     {% if user.is_authenticated %}
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow ">
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom box-shadow " style= "background-color:#d9b38c;"  >
 
       <a class="my-0 mr-md-auto p-2 text-dark" href = "/">Movie Recomender</a>
 
       <div class="col-s-3">
 
-        <a class="btn btn-outline-primary "  href="{% url 'home' %}">Home</a>
+        <a class="btn btn-outline-dark "  href="{% url 'home' %}">Home</a>
 
 
       <li class="dropdown ">
-        <a href="javascript:void(0)" class="dropbtn btn btn-outline-primary ">Profile</a>
+        <a href="javascript:void(0)" class="dropbtn btn btn-outline-dark ">Profile</a>
           <div class="dropdown-content">
               <a href="{% url 'view_profile' %}">My Profile</a>
               <a href="{% url 'edit_profile' %}">Edit Profile</a>
@@ -74,7 +83,7 @@
      </li>
 
      <li class="dropdown ">
-       <a href="javascript:void(0)" class="dropbtn btn btn-outline-primary ">Group</a>
+       <a href="javascript:void(0)" class="dropbtn btn btn-outline-dark ">Group</a>
          <div class="dropdown-content">
              <a href="{% url 'group' %}">Create Group</a>
              <a href="{% url 'join_group' %}">Join Group</a>
@@ -83,7 +92,7 @@
 
 
       <li class="dropdown ">
-        <a href="javascript:void(0)" class="dropbtn btn btn-outline-primary ">Movies</a>
+        <a href="javascript:void(0)" class="dropbtn btn btn-outline-dark ">Movies</a>
           <div class="dropdown-content">
               <a href="{% url 'top_movies' %}">Top 10 Movies</a>
               <a href="{% url 'movies' %}">All Movies</a>
@@ -91,7 +100,7 @@
           </div>
      </li>
 
-     <a class="btn btn-outline-primary "  href="{% url 'logout' %}">Logout</a>
+     <a class="btn btn-outline-dark "  href="{% url 'logout' %}">Logout</a>
 
 
 </div>
@@ -104,8 +113,8 @@
 
     <a class="my-0 mr-md-auto p-2 text-dark" href = "/">Movie Reccomender</a>
     <div class="col-s-3">
-      <a class="btn btn-outline-primary "  href="{% url 'login' %}">Login</a>
-      <a class="btn btn-outline-primary "  href="{% url 'register' %}">Register</a>
+      <a class="btn btn-outline-dark "  href="{% url 'login' %}">Login</a>
+      <a class="btn btn-outline-dark "  href="{% url 'register' %}">Register</a>
     </div>
   </div>
 

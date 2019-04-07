@@ -9,7 +9,7 @@
     {% csrf_token%}
     {{form.post}}
     <br>
-    <button class = "btn btn-primary" type="submit">Submit</button>
+    <button class = "btn btn-dark" type="submit">Submit</button>
     <h2>{{text}}</h2>
     {% for post in posts %}
       <h1>{{post.post}}</h1>
@@ -18,25 +18,25 @@
   </form>
   </div>
   <div class="col-sm-4">
-    <h2>Suggested Friends</h2>
+    <h2><u>Suggested Friends</u></h2>
     {%for user in users%}
-    <a href="{% url 'view_other_user' pk=user.pk %}">
+    <a href="{% url 'view_other_user' pk=user.pk %}" style = "color:black">
       <h3>{{user.username}}</h3>
     </a>
     {% if not user in friends %}
-    <a href="{% url 'add_del_friends' operation='add' pk=user.pk %}">
-        <button type="button" class="btn btn-success">Add Friend</button>
+    <a href="{% url 'add_del_friends' operation='add' pk=user.pk %}" style = "color:black">
+        <button type="button" class="btn btn-dark">Add Friend</button>
     </a>
     {% endif %}
     {% endfor%}
 
-    <h2>Friends</h2>
+    <h2><u>Friends</u></h2>
     {%for friend in friends%}
-    <a href="{% url 'view_other_user' pk=user.pk %}">
+    <a href="{% url 'view_other_user' pk=user.pk %}" style = "color:black">
       <h3>{{friend.username}}</h3>
     </a>
     <a href="{% url 'add_del_friends' operation='remove' pk=friend.pk %}">
-      <button type="button" class="btn btn-warning">Delete Friend</button>
+      <button type="button" class="btn btn-danger">Delete Friend</button>
     </a>
 
     {% endfor%}

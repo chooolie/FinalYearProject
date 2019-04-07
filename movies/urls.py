@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^downvote/(?P<pk>\d+)/(?P<group>\d+)/$',views.DownVoteButton, name='downvote'),
     url(r'^delete_movie/(?P<pk>\d+)/(?P<group>\d+)/$',views.DeleteMovie, name='delete_movie'),
     url(r'^leave_group/(?P<group>\d+)/$',views.LeaveGroup, name='leave_group'),
+    url(r'^my_group/$',views.MyGroups, name='my_group'),
 ]
