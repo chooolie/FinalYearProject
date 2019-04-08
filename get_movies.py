@@ -1,9 +1,6 @@
 import sys, os
 import pandas as pd
 import datetime
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "moviescope.settings")
-
 import django
 django.setup()
 # Inspiration from https://github.com/aakashsethi20/MovieScope

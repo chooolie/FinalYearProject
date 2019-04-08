@@ -1,13 +1,11 @@
 import sys, os
 import pandas as pd
 import datetime
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "moviescope.settings")
-
 import django
 django.setup()
 # Inspiration from https://github.com/aakashsethi20/MovieScope
-
+#Get user demographic information
+#Not used in the end
 from movies.models import UserDemographics
 #in dbshell run delete from  movies_topmovies;
 #exec(open('get_movies.py').read())

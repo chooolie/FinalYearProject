@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 from .models import Movie, TopMovies, UserDemographics, UserRatings,GroupInfo, GroupUsers, GroupMovieList
 from .recommender import age_occupation, gender_age, gender_occupation, SimilarMovies
 from .group_recommender import group_rec
+from .collaborative import *
 from accounts.models import UserProfile
 from tmdbv3api import TMDb
 import pandas as pd
@@ -14,6 +15,7 @@ from tmdbv3api import Movie as tmdb_movie
 import pandas as pd
 import numpy as np
 import warnings
+from django.contrib import messages
 warnings.filterwarnings('ignore')
 from scipy.spatial.distance import cosine
 from django.http import HttpResponse
@@ -23,6 +25,14 @@ from simple_search import search_filter
 import operator
 from django.db.models import Q
 from django.db.models import F
+
+import csv
+
+def handler404(request):
+    return render(request, '/movies/404.html', status=404)
+
+def handler500(request):
+    return render(request, '/movies/500.html', status=500)
 
 def GroupVoteButton(request, pk, group):
     #This is used to give up votes to any movies added to the group movie list
@@ -54,8 +64,9 @@ def MyGroups(request):
     my_groups = GroupUsers.objects.filter(user_id=user)
     groupid=[]
     for group in my_groups:
-        groupid.append(group.group_id)
+        groupid = group.group_id
 
+    name_groups = GroupInfo.objects.filter(group_id=groupid)
 
     name_groups = GroupInfo.objects.filter(group_id=groupid)
     args = {'my_groups':my_groups}
@@ -234,16 +245,24 @@ def MovieDetails(request, pk):
     for list in lists:
         list_data.append(list[5])
         list_id.append(int(list[4]))
-    image = "https://image.tmdb.org/t/p/w1280"+ m.poster_path
+
+    try:
+        image = "https://image.tmdb.org/t/p/w1280"+ m.poster_path
+    except:
+        image = "https://shenandoahcountyva.us/bos/wp-content/uploads/sites/4/2018/01/picture-not-available-clipart-12.jpg"
     #Get the rating from the user
     form = RatingForm(request.POST or None)
-    if form.is_valid():
-        post = form.save(commit=False)
-        post.user = UserProfile.objects.get(user_id=request.user)
-        post.movie = Movie.objects.get(movie_id=movie_id)
-        post.tmdbId = pk
-        post.save()
-        return redirect('/account/profile')
+    try:
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = UserProfile.objects.get(user_id=request.user)
+            post.movie = Movie.objects.get(movie_id=movie_id)
+            post.tmdbId = pk
+            post.save()
+            return redirect('/account/profile')
+    except:
+        messages.error(request, "You have already rated this movie")
+        return redirect('/movies/movie_details/' +pk)
 
     #Allow users to add current movie to any group
     movie_form = AddMovieToGroup(request.POST or None)
@@ -254,5 +273,39 @@ def MovieDetails(request, pk):
         post2.save()
         return redirect('/account/profile')
 
-    args = {'m':m, 'image':image, "lists":lists, "list_data":list_data, "list_id":list_id, "movie_id":movie_id, "form":form, "movie_form":movie_form, "movie_id": movie_id}
+    args = { 'm':m, 'image':image, "lists":lists, "list_data":list_data, "list_id":list_id, "movie_id":movie_id, "form":form, "movie_form":movie_form, "movie_id": movie_id}
     return render(request, template_name,args)
+
+def CollabRecommendations(request):
+    template_name ='movies/recommendations2.html'
+    users_id = UserProfile.objects.filter(user_id=request.user)
+    for u in users_id:
+        id = u.id
+    user1_rec = get_movies(id)
+    df_rec = pd.DataFrame(data= { 'movieId':user1_rec})
+    rec= [word for word, word_count in Counter(user1_rec).most_common(10)]
+
+    all_movies = []
+    #Allow for the recommended movies to be clickable
+    for mov in rec:
+        my_movies = Movie.objects.filter(movie_id=mov)
+        for movie in my_movies:
+            movie_id = movie.movie_id
+            name = movie.name
+            genre = movie.genre
+            tmdb = movie.tmdbId
+        all_movies.append([movie_id,name,genre,tmdb])
+
+    voted = []
+    ratings = UserRatings.objects.filter(user_id=id)
+    for mov in ratings:
+        my_movs = Movie.objects.filter(movie_id=mov.movie_id)
+        for m in my_movs:
+            v_movie_id = m.movie_id
+            v_name = m.name
+            v_genre = m.genre
+            v_tmdb = m.tmdbId
+        voted.append([v_movie_id,v_name,v_genre,v_tmdb])
+    args = { 'voted':voted,'all_movies':all_movies, 'ratings':ratings}
+
+    return render(request, template_name, args)

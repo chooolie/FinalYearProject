@@ -1,12 +1,10 @@
 import sys, os
 import pandas as pd
 import datetime
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "moviescope.settings")
-
 import django
 django.setup()
 # Inspiration from https://github.com/aakashsethi20/MovieScope
+#Python file to read in ratings from CSV file into the model
 
 from movies.models import UserRatings, UserDemographics, Movie
 #in dbshell run delete from  movies_topmovies;
@@ -31,7 +29,7 @@ if __name__ == "__main__":
             axis=1
         )
 
-        print ("There are {} movies".format(UserRatings.objects.count()))
+        print ("{} Movies added".format(UserRatings.objects.count()))
 
     else:
-        print ("Please, provide movie file path")
+        print ("nvalid path")

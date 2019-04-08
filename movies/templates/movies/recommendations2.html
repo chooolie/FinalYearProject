@@ -1,0 +1,45 @@
+<!--
+Html to display the users recommendations
+Currently updated by recommender.py file from the Recommendations view
+This page is on the url recommendations/
+
+The view takes in the users in the groups demographics and
+recommends movies based on that.
+-->
+
+{% extends 'base.html' %}
+{% block body%}
+
+<div class="container" id="holder" >
+
+
+<u><h2>Because of your ratings, you might like:</h2></u>
+
+{%for mov in all_movies%}
+<div class="row" style="border-radius: 1px; background-color: #d9b38c">
+  <div class="col-sm" style="font-size:100%;">
+    <a href="{% url 'view' pk=mov.3 %}"style = "color:black">{{ forloop.counter }}.{{mov.1}}</a>
+</div>
+</div>
+<br>
+{%endfor%}
+<br>
+
+
+
+
+
+
+
+<u><h2>Movies you have rated:</h2></u>
+
+{%for all in voted%}
+<div class="row" style="border-radius: 1px; background-color: #d9b38c">
+  <div class="col-sm" style="font-size:100%;">
+    <a href="{% url 'view' pk=all.3 %}" style = "color:black" >{{ forloop.counter }}.  {{all.1}}</a>
+</div>
+</div>
+<br>
+{%endfor%}
+<br>
+{% endblock %}

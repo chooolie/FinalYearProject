@@ -24,9 +24,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 SECRET_KEY = 'ude2obd6c&^!(yp83&zatg8n&mg@zz2zg0&()f_!+-vfhw9k+a'
 #SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
+#DEBUG = True
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -35,6 +36,7 @@ INSTALLED_APPS = [
     'home',
     'movies',
     'updown',
+    'import_export',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',

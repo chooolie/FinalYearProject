@@ -12,14 +12,24 @@ It gets its information from the MovieDetails view
 {% block body%}
 
 
+    {% if messages %}
+        {% for message in messages %}
+            <h3 class = "col-5" style="background-color:black; color:white;">{{message}}</h3>
+        {% endfor %}
+    {% endif %}
+
+
 <div id = "holder" class="container">
   <div class="">
     <br>
   </div>
   <div class="row" >
+    {% if image %}
     <div class="col-3" >
       <img src={{image}} alt="Movie Thumbnail" height="90%" width="90%">
   </div>
+
+  {% endif %}
     <div class="col-5" style = "font-size:35px;font-weight:bold; color:black;">
         {{m.title}}
         <div class="col-8" style = "font-size:15px;">
@@ -87,6 +97,8 @@ It gets its information from the MovieDetails view
 
         <!-- csrf token allows for safe log in-- then form as paragraph-->
       </form>
+
+
     </div>
 
     </div>

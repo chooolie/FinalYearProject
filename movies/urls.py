@@ -2,6 +2,7 @@ from django.conf.urls import url
 #from movies.views import MovieView
 
 from . import views
+
 #All the URLS for each view
 urlpatterns = [
     url(r'^view_movies/$',views.MovieView, name='movies'),
@@ -18,4 +19,5 @@ urlpatterns = [
     url(r'^delete_movie/(?P<pk>\d+)/(?P<group>\d+)/$',views.DeleteMovie, name='delete_movie'),
     url(r'^leave_group/(?P<group>\d+)/$',views.LeaveGroup, name='leave_group'),
     url(r'^my_group/$',views.MyGroups, name='my_group'),
+    url(r'^recommendations2/$',views.CollabRecommendations, name='recommendations2'),
 ]
