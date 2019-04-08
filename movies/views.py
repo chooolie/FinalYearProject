@@ -170,7 +170,17 @@ def Top10(request):
     #Display top 10 rated movies
     template_name = 'movies/movie_list.html'
     top_movies = TopMovies.objects.all()
-    args = {'top_movies': top_movies}
+    tmdb = TMDb()
+    tmdb.api_key = '69c1026aa20e6449c7a0f74f69dffd7d'
+    tmdb.language = 'en'
+    movie = tmdb_movie()
+
+    m = []
+    for mov in top_movies:
+        m.append(movie.details(mov.tmdbId))
+
+
+    args = {'top_movies': top_movies, 'm':m}
     return render(request, template_name, args)
 
 def Recommendations(request):

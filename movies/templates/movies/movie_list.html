@@ -10,6 +10,7 @@ It gets its information from the Top10 view
 {% extends 'base.html' %}
 
 {% block body%}
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 .checked {
@@ -21,20 +22,17 @@ It gets its information from the Top10 view
 <div class="container" id="holder">
   <u><h2>Top 10 movies:</h2></u>
 
-  {% for movie in top_movies %}
+  {% for movie in m %}
 
   <div class="row"  style="border-radius: 1px; background-color: #d9b38c">
     <div class="col-sm" >
-        <a href="{% url 'view' pk=movie.tmdbId %}" style = "color:black">
-          {{ forloop.counter }}.{{movie.title}}
-          </a>
-
+      <img src="https://image.tmdb.org/t/p/w1280{{movie.poster_path}}" width="7%" height="100%"alt="">
+      <a href="{% url 'view' pk=movie.id %}" style = "color:black">
+        {{ forloop.counter }}.{{movie.title}}
+        </a>
     </div>
     <div class="col-sm">
-    {{movie.genre}}
-    </div>
-    <div class="col-sm">
-{{movie.rating|floatformat}}/5
+{{movie.vote_average}}/10
     </div>
   </div>
 <p></p>
