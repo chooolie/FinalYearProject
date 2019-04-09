@@ -7,11 +7,14 @@ It gets its information from the JoinGroup view
 -->
 {% extends 'base.html' %}
 {% block body%}
-{% if messages %}
-    {% for message in messages %}
-        <h3 class = "col-5" style="background-color:black; color:white;">{{message}}</h3>
-    {% endfor %}
+{% if messages%}
+{%for message in messages%}
+<div class="" role = "alert" style = "color:black; font-weight:bold">
+  <center> {{message}}</center>
+</div>
+{% endfor %}
 {% endif %}
+
 <div id = "holder" class="container" style= "width: 50%; border-radius: 25px">
 <br>
 <div class="row">

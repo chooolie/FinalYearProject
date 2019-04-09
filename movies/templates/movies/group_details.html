@@ -9,12 +9,7 @@ It gets its information from the ViewGroup view
 {% extends 'base.html' %}
 {% block body%}
 
-
-
-
 <br>
-
-
 
 <div class="container" id="holder">
   <h1 style="color:black; text-align:center; ">
@@ -85,5 +80,6 @@ It gets its information from the ViewGroup view
   <a href ="{% url 'leave_group' group=name.group_id %}" type="" id="down" style = "color:#993333; background-color:#d9b38c;" class="btn btn-dark fa fa-trash" > Leave Group</a>
   {%endfor%}
 <p></p>
+<br>
 
 {% endblock %}
