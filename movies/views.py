@@ -26,13 +26,6 @@ import operator
 from django.db.models import Q
 from django.db.models import F
 
-import csv
-
-def handler404(request):
-    return render(request, '/movies/404.html', status=404)
-
-def handler500(request):
-    return render(request, '/movies/500.html', status=500)
 
 def GroupVoteButton(request, pk, group):
     #This is used to give up votes to any movies added to the group movie list
@@ -103,9 +96,13 @@ def JoinGroup(request):
 
 def JoinButton(request, pk):
     #WHEN SOMEONE CLICKS JOIN BUTTON FOR GROUPS
-    g = GroupUsers(group = GroupInfo.objects.get(group_id=pk), user = UserProfile.objects.get(user_id=request.user), user_name = request.user.first_name)
-    g.save()
-    return redirect ('/movies/join_group')
+    try:
+        g = GroupUsers(group = GroupInfo.objects.get(group_id=pk), user = UserProfile.objects.get(user_id=request.user), user_name = request.user.first_name)
+        g.save()
+        return redirect ('/movies/group_details/'+pk)
+    except:
+            messages.error(request, "You are already in this group!")
+            return redirect ('/movies/join_group')
 
 def ViewGroup(request, pk):
     #When a groups is clicked on - all the details
@@ -276,12 +273,17 @@ def MovieDetails(request, pk):
 
     #Allow users to add current movie to any group
     movie_form = AddMovieToGroup(request.POST or None)
-    if movie_form.is_valid():
-        post2 = movie_form.save(commit=False)
-        post2.user = UserProfile.objects.get(user_id=request.user)
-        post2.movie = Movie.objects.get(movie_id=movie_id)
-        post2.save()
-        return redirect('/account/profile')
+    try:
+        if movie_form.is_valid():
+            post2 = movie_form.save(commit=False)
+            post2.user = UserProfile.objects.get(user_id=request.user)
+            post2.movie = Movie.objects.get(movie_id=movie_id)
+            post2.save()
+            groupId = post2.group_id
+            return redirect('/movies/join_group')
+    except:
+        messages.error(request, "This movie has already been added")
+        return redirect('/movies/movie_details/' +pk)
 
     args = { 'm':m, 'image':image, "lists":lists, "list_data":list_data, "list_id":list_id, "movie_id":movie_id, "form":form, "movie_form":movie_form, "movie_id": movie_id}
     return render(request, template_name,args)
