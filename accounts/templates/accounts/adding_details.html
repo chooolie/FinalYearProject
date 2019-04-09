@@ -5,6 +5,14 @@
 {% endblock %}
 
 {% block body %}
+
+{% if messages%}
+{%for message in messages%}
+<div class="" role = "alert" style = "color:black; font-weight:bold">
+  <center> {{message}}</center>
+</div>
+{% endfor %}
+{% endif %}
 <!-- This is for changing details such as demographics details-->
 <div class="container" id="holder" style= "width: 50%">
   <h2><u>Enter your details </u></h2>

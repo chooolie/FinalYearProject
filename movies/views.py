@@ -219,6 +219,7 @@ def Recommendations(request):
 
     all_movies = []
     #Allow for the recommended movies to be clickable
+
     for mov in recommendations:
         my_movies = Movie.objects.filter(tmdbId=mov)
         for movie in my_movies:
@@ -228,9 +229,12 @@ def Recommendations(request):
             tmdb = movie.tmdbId
         all_movies.append([movie_id,name,genre,tmdb])
 
-    args = { 'user_info':user_info, 'movies':movies, 'movies2':movies2, 'movies3':movies3, 'recommendations':recommendations, 'mov':mov, 'all_movies':all_movies}
-    return render(request, template_name, args)
-
+    try:
+        args = { 'user_info':user_info, 'movies':movies, 'movies2':movies2, 'movies3':movies3, 'recommendations':recommendations, 'mov':mov, 'all_movies':all_movies}
+        return render(request, template_name, args)
+    except:
+        messages.error(request, "You must enter your details first")
+        return redirect('/account/adding_details/')
 
 def MovieDetails(request, pk):
     #Accessing the TMDB API
