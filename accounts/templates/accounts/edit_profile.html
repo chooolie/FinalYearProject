@@ -5,12 +5,18 @@
 {% endblock %}
 
 {% block body %}
-<div class="container" id="holder" style = "">
+<div class="container" id="holder" style = "width:50%;">
     <h3>Change your details here</h3>
 <br>
     <form method="post">
       {%csrf_token%}
-      {{form.as_p}}
+      First name:
+      {{form.first_name}}
+      Last name:
+      {{form.last_name}}
+      Email:
+      {{form.email}}
+      <br>
       <button class = "btn btn-dark" type="submit">Submit</button>
     </form>
     <br>

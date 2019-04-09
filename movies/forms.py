@@ -14,7 +14,13 @@ class RatingForm(forms.ModelForm):
         }
 
 class CreateGroup(forms.ModelForm):
-	group_name = models.CharField(max_length=50)
+	group_name = forms.CharField(max_length=50,widget = forms.TextInput(
+	    attrs={
+	        'class':'form-control',
+	        'placeholder': 'Enter unique group name',
+	    }
+	))
+	#group_name = models.CharField(max_length=50)
 	class Meta:
 		model = GroupInfo
 		fields = ('group_name',)

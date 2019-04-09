@@ -16,10 +16,12 @@ It gets its information from the GroupView view
   </div>
   <div class="col-7" style = "font-size:35px;font-weight:bold;" > Create group</div>
 </div>
-Please Enter a Unique group name!
+
   <form method="post" class="form-group">
   {% csrf_token %}
-  {{form.as_p}}
+  Please Enter a Unique group name:
+  {{form.group_name}}
+  <br>
   <button class = "btn btn-dark" type="submit">Create Group</button>
   </form>
 <div class="col-13">
