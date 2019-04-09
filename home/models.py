@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Post(models.Model):
-    post = models.CharField(max_length= 500)
+    movie_name = models.CharField(max_length=100, default = "Not available")
+    post = models.CharField(max_length= 1000)
     user = models.ForeignKey(User)
     created = models.DateTimeField(auto_now_add = True)
     edited = models.DateTimeField(auto_now = True)

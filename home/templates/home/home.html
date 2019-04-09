@@ -8,12 +8,13 @@
   <h2>Write any personal recommendations</h2>
   <form  method="post">
     {% csrf_token%}
-    {{form.post}}
+    {{form.as_p}}
     <br>
     <button class = "btn btn-dark" type="submit">Submit</button>
     <h2>{{text}}</h2>
     {% for post in posts %}
-      <h1>{{post.post}}</h1>
+      <h3>{{forloop.counter}}. {{post.movie_name}}</h3>
+      <h5>{{post.post}}</h5>
       <p>Posted by {{post.user.get_full_name}} on {{post.created}}</p>
     {% endfor %}
   </form>
