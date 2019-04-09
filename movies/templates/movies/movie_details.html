@@ -10,7 +10,6 @@ It gets its information from the MovieDetails view
 {% extends 'base.html' %}
 
 {% block body%}
-
 {% if messages%}
 {%for message in messages%}
 <div class="" role = "alert" style = "color:black; font-weight:bold">
@@ -26,7 +25,7 @@ It gets its information from the MovieDetails view
   <div class="row" >
     {% if image %}
     <div class="col-3" >
-      <img src={{image}} alt="Movie Thumbnail" height="90%" width="90%">
+      <img src={{image}} alt="Movie Thumbnail"  width="100%" alt = "Poster for movie">
   </div>
 
   {% endif %}
@@ -41,11 +40,11 @@ It gets its information from the MovieDetails view
         </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-3">
       <form method="post" class="form-group">
         {% csrf_token %}
 
-       {{movie_form  }}
+       {{movie_form }}
 
         <button type="submit" name="button" class="btn btn-dark">Add To Group</button>
 
@@ -56,7 +55,7 @@ It gets its information from the MovieDetails view
 
 
 
-    <div class="col-5" style="font-weight:bold">
+    <div class="col-5" style="font-weight:bold" alt = "Rating is {{m.vote_average}}">
       Rating:
       {%if m.vote_average > 0 and m.vote_average < 2 %}
       <span class="fa fa-star" style="color:yellow"></span>  <span class="fa fa-star" style="color:yellow">
