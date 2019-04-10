@@ -1,4 +1,6 @@
 from django.utils.translation import gettext as _
+####Ratings choices
+
 RATING_CHOICE = (
     (5, _("10/10")),
     (4.5, _("9/10")),

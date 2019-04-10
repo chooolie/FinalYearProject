@@ -8,6 +8,7 @@ admin.site.register(TopMovies)
 #admin.site.register(UserRatings)
 admin.site.register(GroupInfo)
 admin.site.register(GroupUsers)
+admin.site.register(GroupMovieList)
 
 @admin.register(UserRatings)
 class ViewAdmin(ImportExportModelAdmin):
