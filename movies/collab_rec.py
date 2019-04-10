@@ -7,7 +7,8 @@ from sklearn.cluster import KMeans
 '''
 https://github.com/gouravaich/k-means-clustering-movie-ratings/blob/master/k-means%20Clustering%20of%20Movie%20Ratings.ipynb
 '''
-###Practicing getting clustering working => Not used
+###Practicing getting clustering working =>
+###Ended up not being used
 
 def users_top_rating(top_movies, max):
     ## Get the rop rated movies - max is ammount sent in
