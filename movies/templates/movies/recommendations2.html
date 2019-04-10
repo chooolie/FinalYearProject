@@ -26,11 +26,6 @@ recommends movies based on that.
 <br>
 
 
-
-
-
-
-
 <u><h2>Movies you have rated:</h2></u>
 
 {%for all in voted%}
@@ -38,6 +33,7 @@ recommends movies based on that.
   <div class="col-sm" style="font-size:100%;">
     <a href="{% url 'view' pk=all.3 %}" style = "color:black" >{{ forloop.counter }}.  {{all.1}}</a>
 </div>
+<div class = "col-sm">{{all.4}}/5</div>
 </div>
 <br>
 {%endfor%}

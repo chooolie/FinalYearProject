@@ -5,11 +5,9 @@
 {% endblock %}
 
 {% block body %}
-<div class="container" id = "holder">
-  <p>
-  <h1>Welcome</h1>
-  <p>You can log in here</p>
-  <h2>Login</h2>
+<div class="container" id = "holder" style = "width:50%">
+  <h2>Enter you login details</h2>
+  <br>
   <div class="">
     <form method="post" class="form-group">
       {% csrf_token %}

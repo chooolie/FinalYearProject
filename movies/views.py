@@ -321,7 +321,8 @@ def CollabRecommendations(request):
             v_name = m.name
             v_genre = m.genre
             v_tmdb = m.tmdbId
-        voted.append([v_movie_id,v_name,v_genre,v_tmdb])
+        v_rating = mov.rating
+        voted.append([v_movie_id,v_name,v_genre,v_tmdb,v_rating])
     args = { 'voted':voted,'all_movies':all_movies, 'ratings':ratings}
 
     return render(request, template_name, args)

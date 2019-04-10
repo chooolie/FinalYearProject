@@ -52,22 +52,7 @@ def Add_demo_details(request):
         return redirect('/account/profile')
     args = {'form':form}
     return render(request, template_name, args)
-'''
-def Add_demo_details(request):
-    template_name =  'accounts/adding_details.html'
-    if request.method == 'POST':
-        form = UserDemoForm(request.POST)
-        if form.is_valid():
-            demographis = form.save(commit=False)
-            demographis.user = request.user
-            demographis.save()
-            return redirect('/account/profile')
 
-    else:
-        form = UserDemoForm()
-    args = {'form':form}
-    return render(request, template_name, args)
-'''
 
 def edit_profile(request):
     if request.method == 'POST':

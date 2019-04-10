@@ -41,7 +41,7 @@ class RegistrationForm(UserCreationForm):
     password2 = forms.CharField(widget = forms.PasswordInput(
         attrs={
             'class':'form-control',
-            'placeholder': 'Re- Enter your password',
+            'placeholder': 'Re-Enter your password',
         }
     ))
     class Meta:
