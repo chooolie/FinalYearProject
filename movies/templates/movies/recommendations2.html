@@ -10,11 +10,19 @@ recommends movies based on that.
 {% extends 'base.html' %}
 {% block body%}
 
+
+
+
 <div class="container" id="holder" >
 
-
-<u><h2>Because of your ratings, you might like:</h2></u>
-
+  <u><h2>Because of your ratings, you might like:</h2></u>
+  {% if messages%}
+  {%for message in messages%}
+  <div class="" role = "alert" style = "color:black; font-weight:bold">
+    <center> {{message}}</center>
+  </div>
+  {% endfor %}
+  {% endif %}
 {%for mov in all_movies%}
 <div class="row" style="border-radius: 1px; background-color: #d9b38c">
   <div class="col-sm" style="font-size:100%;">

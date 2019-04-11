@@ -325,6 +325,9 @@ def CollabRecommendations(request):
             v_tmdb = m.tmdbId
         v_rating = mov.rating
         voted.append([v_movie_id,v_name,v_genre,v_tmdb,v_rating])
-    args = { 'voted':voted,'all_movies':all_movies, 'ratings':ratings}
-
+    try:
+        messages.error(request, "You must rate movies first")
+        args = { 'voted':voted}
+    except:
+        args = { 'voted':voted,'all_movies':all_movies, 'ratings':ratings}
     return render(request, template_name, args)
