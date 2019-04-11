@@ -25,7 +25,7 @@ class HomeView(TemplateView):
             post.save()
             text = form.cleaned_data['post']
             form = HomeForm()
-            return redirect ('home')
+            return redirect ('review')
 
         args = {'form':form, 'text': text}
         return render(request, self.template_name, args)
@@ -36,4 +36,4 @@ def add_del_friends(request, operation, pk):
         AddFriend.adding(request.user,new_friend)
     elif operation == 'remove':
         AddFriend.deleting(request.user,new_friend)
-    return redirect ('home')
+    return redirect ('review')
