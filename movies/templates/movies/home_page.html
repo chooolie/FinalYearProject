@@ -1,6 +1,23 @@
 
 {% extends 'base.html' %}
 {% block body%}
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+
+    </div>
+    <div class="col-lg">
+      <form id="searchform" action="{% url 'searching' %}" method="get" accept-charset="utf-8">
+        <div class="input-group md-form form-sm form-2 pl-0">
+            <input class="form-control  my-0 py-1 red-border" id="searchbox" name="search_query" type="text"  aria-label="Search" placeholder="Search by movie name">
+            <button class="searchbutton" type="submit">
+              <i class="fa fa-search text-blue" aria-hidden="true"></i>
+            </button>
+       </form>
+    </div>
+  </div>
+</div>
+<p></p>
 
 <div class="container" id = "holder" style = "width:50%">
 
@@ -22,7 +39,7 @@ with the most votes.
 
 <p>
 If you want, you can write reviews on movies that you like or dislike <a href="{% url 'review' %}" style = "color:darkblue">here.</a>
-You can also view other users reviews there too. 
+You can also view other users reviews there too.
 
 </p>
 </div>

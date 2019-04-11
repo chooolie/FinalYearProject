@@ -18,6 +18,24 @@ It gets its information from the MovieDetails view
 {% endfor %}
 {% endif %}
 
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+
+    </div>
+    <div class="col-lg">
+      <form id="searchform" action="{% url 'searching' %}" method="get" accept-charset="utf-8">
+        <div class="input-group md-form form-sm form-2 pl-0">
+            <input class="form-control  my-0 py-1 red-border" id="searchbox" name="search_query" type="text"  aria-label="Search" placeholder="Search by movie name">
+            <button class="searchbutton" type="submit">
+              <i class="fa fa-search text-blue" aria-hidden="true"></i>
+            </button>
+       </form>
+    </div>
+  </div>
+</div>
+<p></p>
+
 <div id = "holder" class="container">
   <div class="">
     <br>
@@ -42,6 +60,7 @@ It gets its information from the MovieDetails view
 
     <div class="col-3">
       <form method="post" class="form-group">
+        <p><b>Add to one of your watchlists</b></p>
         {% csrf_token %}
 
        {{movie_form }}
@@ -104,9 +123,9 @@ It gets its information from the MovieDetails view
 </<div class="col-13"  >
 
   <div class="col-9" style="border-radius: 15px; background-color: #d9b38c">
-    <h4><u>Similar movies:</u></h4>
+    <h4><u>People who like {{m.title}} also like:</u></h4>
 
-    <br>
+
     {% with counting=1 %}
      {%for list in list_data  %}
 

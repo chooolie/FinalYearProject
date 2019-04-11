@@ -152,7 +152,7 @@ def ViewGroup(request, pk):
 def MovieView(request):
     #DISPLAY ALL MOVIES IN ALPHABETICAL ORDER
     template_name = 'movies/movies.html'
-    movies = Movie.objects.all()
+    movies = Movie.objects.all().order_by('name')
     ratings = UserRatings.objects.all()
     args = {'movies': movies, 'ratings':ratings}
     return render(request, template_name, args)
