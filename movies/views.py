@@ -299,20 +299,24 @@ def CollabRecommendations(request):
     users_id = UserProfile.objects.filter(user_id=request.user)
     for u in users_id:
         id = u.id
-    user1_rec = get_movies(id)
-    df_rec = pd.DataFrame(data= { 'movieId':user1_rec})
-    rec= [word for word, word_count in Counter(user1_rec).most_common(10)]
 
-    all_movies = []
-    #Allow for the recommended movies to be clickable
-    for mov in rec:
-        my_movies = Movie.objects.filter(movie_id=mov)
-        for movie in my_movies:
-            movie_id = movie.movie_id
-            name = movie.name
-            genre = movie.genre
-            tmdb = movie.tmdbId
-        all_movies.append([movie_id,name,genre,tmdb])
+    try:
+        user1_rec = get_movies(id)
+        df_rec = pd.DataFrame(data= { 'movieId':user1_rec})
+        rec= [word for word, word_count in Counter(user1_rec).most_common(10)]
+
+        all_movies = []
+        #Allow for the recommended movies to be clickable
+        for mov in rec:
+            my_movies = Movie.objects.filter(movie_id=mov)
+            for movie in my_movies:
+                movie_id = movie.movie_id
+                name = movie.name
+                genre = movie.genre
+                tmdb = movie.tmdbId
+            all_movies.append([movie_id,name,genre,tmdb])
+    except:
+        all_movies = ''
 
     voted = []
     ratings = UserRatings.objects.filter(user_id=id)
@@ -325,9 +329,6 @@ def CollabRecommendations(request):
             v_tmdb = m.tmdbId
         v_rating = mov.rating
         voted.append([v_movie_id,v_name,v_genre,v_tmdb,v_rating])
-    try:
-        messages.error(request, "You must rate movies first")
-        args = { 'voted':voted}
-    except:
-        args = { 'voted':voted,'all_movies':all_movies, 'ratings':ratings}
+
+    args = { 'voted':voted,'all_movies':all_movies, 'ratings':ratings}
     return render(request, template_name, args)
