@@ -272,7 +272,7 @@ def MovieDetails(request, pk):
             post.movie = Movie.objects.get(movie_id=movie_id)
             post.tmdbId = pk
             post.save()
-            return redirect('/account/profile')
+            return redirect('/movies/movie_details/' +pk)
     except:
         messages.error(request, "You have already rated this movie")
         return redirect('/movies/movie_details/' +pk)
