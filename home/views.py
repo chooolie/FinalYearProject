@@ -6,7 +6,7 @@ from home.models import Post, AddFriend
 from django.contrib.auth.models import User
 
 class HomeView(TemplateView):
-    template_name = 'home/home.html'
+    template_name = 'home/review.html'
 
     def get(self, request):
         form = HomeForm()

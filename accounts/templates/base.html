@@ -67,11 +67,11 @@
     {% if user.is_authenticated %}
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom box-shadow " style= "background-color:#d9b38c;"  >
 
-      <a class="my-0 mr-md-auto p-2 text-dark" href = "/">Movie Recommender</a>
+      <a class="my-0 mr-md-auto p-1 text-dark" style = "font-size:150%" href = "/">Movie Recommender</a>
 
       <div class="col-s-3">
 
-        <a class="btn btn-outline-dark "  href="{% url 'home' %}">Home</a>
+        <a class="btn btn-outline-dark "  href="{% url 'review' %}">Home</a>
 
 
       <li class="dropdown ">
@@ -99,6 +99,7 @@
               <a href="{% url 'top_movies' %}">Top 10 Movies</a>
               <a href="{% url 'movies' %}">All Movies</a>
               <a href="{% url 'recommendations' %}">Recommended Movies</a>
+              <a href="{% url 'review' %}">Write a review</a>
               <a href="{% url 'recommendations2' %}">Your Ratings</a>
           </div>
      </li>
