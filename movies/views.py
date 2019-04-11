@@ -286,7 +286,7 @@ def MovieDetails(request, pk):
             post2.movie = Movie.objects.get(movie_id=movie_id)
             post2.save()
             groupId = post2.group_id
-            return redirect('/movies/join_group')
+            return redirect('/movies/my_group')
     except:
         messages.error(request, "This movie has already been added")
         return redirect('/movies/movie_details/' +pk)
