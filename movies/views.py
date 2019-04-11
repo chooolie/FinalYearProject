@@ -27,6 +27,10 @@ from django.db.models import Q
 from django.db.models import F
 
 
+def HomePage(request):
+    template_name = 'movies/home_page.html'
+    return render(request, template_name)
+
 def GroupVoteButton(request, pk, group):
     #This is used to give up votes to any movies added to the group movie list
     #Gets the group id and movie id which are unique together to increment the vote field
@@ -56,13 +60,11 @@ def MyGroups(request):
     user = UserProfile.objects.filter(user_id=request.user)
     my_groups = GroupUsers.objects.filter(user_id=user)
     groupid=[]
+    name_groups= []
     for group in my_groups:
         groupid = group.group_id
-
-    name_groups = GroupInfo.objects.filter(group_id=groupid)
-
-    name_groups = GroupInfo.objects.filter(group_id=groupid)
-    args = {'my_groups':my_groups}
+        name_groups.append(GroupInfo.objects.get(group_id=groupid))
+    args = {'name_groups':name_groups}
     return render(request, template_name, args)
 
 def DownVoteButton(request, pk, group):

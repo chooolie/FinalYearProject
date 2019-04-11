@@ -13,7 +13,7 @@
      {% block head  %}
      <meta charset="utf-8">
       {% endblock %}
-     <title>Base</title>
+     <title>Movie Recommender</title>
      <style>
 
      body
@@ -67,11 +67,11 @@
     {% if user.is_authenticated %}
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom box-shadow " style= "background-color:#d9b38c;"  >
 
-      <a class="my-0 mr-md-auto p-1 text-dark" style = "font-size:150%" href = "/">Movie Recommender</a>
+      <a class="my-0 mr-md-auto p-1 text-dark" style = "font-size:150%" href="{% url 'homepage' %}">Movie Recommender</a>
 
       <div class="col-s-3">
 
-        <a class="btn btn-outline-dark "  href="{% url 'review' %}">Home</a>
+        <a class="btn btn-outline-dark "  href="{% url 'homepage' %}">Home</a>
 
 
       <li class="dropdown ">
@@ -89,6 +89,7 @@
          <div class="dropdown-content">
              <a href="{% url 'group' %}">Create Group</a>
              <a href="{% url 'join_group' %}">Join Group</a>
+             <a href="{% url 'my_group' %}">My Groups</a>
          </div>
     </li>
 
@@ -115,7 +116,7 @@
    {% else%}
      <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom box-shadow " style= "background-color:#d9b38c;"  >
 
-    <a class="my-0 mr-md-auto p-2 text-dark" href = "/">Movie Recommender</a>
+      <a class="my-0 mr-md-auto p-1 text-dark" style = "font-size:150%" href="{% url 'homepage' %}">Movie Recommender</a>
     <div class="col-s-3">
       <a class="btn btn-outline-dark "  href="{% url 'login' %}">Login</a>
       <a class="btn btn-outline-dark "  href="{% url 'register' %}">Register</a>

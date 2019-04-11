@@ -20,4 +20,6 @@ urlpatterns = [
     url(r'^leave_group/(?P<group>\d+)/$',views.LeaveGroup, name='leave_group'),
     url(r'^my_group/$',views.MyGroups, name='my_group'),
     url(r'^recommendations2/$',views.CollabRecommendations, name='recommendations2'),
+    url(r'^homepage/$',views.HomePage, name='homepage'),
+
 ]

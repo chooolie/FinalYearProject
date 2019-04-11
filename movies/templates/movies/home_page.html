@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %}
+{% block body%}
+
+<div class="container" id = "holder" style = "width:50%">
+
+<h3><u>About us</u></h3>
+<p>
+This is a movie recommender application that you can use to view and search through movies <a href="{% url 'movies' %}" style = "color:darkblue">here</a>.
+When you enter in your <a href="{% url 'add_details' %}"  style = "color:darkblue">details </a> you will be able to view movie recommendations for yourself
+<a href="{% url 'recommendations' %}"  style = "color:darkblue">here. </a>You can also <a href="{% url 'group' %}"  style = "color:darkblue">create groups</a>
+ or <a href="{% url 'join_group' %}"  style = "color:darkblue">join groups</a>, when you view your group, you will be given movie
+ recommendations for every user in the group.
+</p>
+<p>
+When viewing movies, you will see a list of movies that users who like that movie also like. You can also choose to rate the movie
+or to add it to the watchlist of any of your groups. If you then view the group you added your movie too, you can see a list of
+movies in your watchlist that users have added. You can decide to up or down vote each movie in the group if you like
+the movie or not. So that next time that you meet up with your group to watch a movie, you can watch the movie
+with the most votes.
+</p>
+
+<p>
+If you want, you can write reviews on movies that you like or dislike <a href="{% url 'review' %}" style = "color:darkblue">here.</a>
+You can also view other users reviews there too. 
+
+</p>
+</div>
+
+{% endblock %}

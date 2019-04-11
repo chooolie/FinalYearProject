@@ -39,7 +39,7 @@ It gets its information from the ViewGroup view
     {% for p in people %}
     <p></p>
     <div class="col" style="border-radius: 10px; background-color: #d9b38c">
-        <a href="{% url 'view_other_user' pk=user.pk %}" style = "color:black">  {{ forloop.counter }}. {{p.user_name}} </a>
+         {{ forloop.counter }}. {{p.user_name}} 
 
     </div>
     {% endfor%}
