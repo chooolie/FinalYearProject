@@ -1,0 +1,11 @@
+movieId,rating,count_ratings,title,genres,tmdbId
+318,4.429022082018927,317,"Shawshank Redemption, The (1994)",Crime|Drama,278.0
+858,4.2890625,192,"Godfather, The (1972)",Crime|Drama,238.0
+2959,4.272935779816514,218,Fight Club (1999),Action|Crime|Drama|Thriller,550.0
+1221,4.25968992248062,129,"Godfather: Part II, The (1974)",Crime|Drama,240.0
+1213,4.25,126,Goodfellas (1990),Crime|Drama,769.0
+58559,4.238255033557047,149,"Dark Knight, The (2008)",Action|Crime|Drama|IMAX,155.0
+50,4.237745098039215,204,"Usual Suspects, The (1995)",Crime|Mystery|Thriller,629.0
+1197,4.232394366197183,142,"Princess Bride, The (1987)",Action|Adventure|Comedy|Fantasy|Romance,2493.0
+260,4.231075697211155,251,Star Wars: Episode IV - A New Hope (1977),Action|Adventure|Sci-Fi,11.0
+527,4.223981900452489,221,Schindler's List (1993),Drama|War,424.0
