@@ -26,8 +26,11 @@ import operator
 from django.db.models import Q
 from django.db.models import F
 
+''' Everything here is to be sent to the templates'''
+''' args variable contains arguments to be sent to view'''
 
 def HomePage(request):
+    #Displays the about us page
     template_name = 'movies/home_page.html'
     return render(request, template_name)
 
@@ -56,6 +59,7 @@ def LeaveGroup(request, group):
     return redirect('/movies/join_group/')
 
 def MyGroups(request):
+    #Allows users to view all groups that they are in
     template_name = 'movies/my_groups.html'
     user = UserProfile.objects.filter(user_id=request.user)
     my_groups = GroupUsers.objects.filter(user_id=user)
@@ -78,6 +82,7 @@ def DownVoteButton(request, pk, group):
 
 def GroupView(request):
     #Contains the form to create a group - takes a group name
+    #Id is auto incremeneted
     template_name = 'movies/create_group.html'
     form = CreateGroup(request.POST or None)
     if form.is_valid():
@@ -98,6 +103,7 @@ def JoinGroup(request):
 
 def JoinButton(request, pk):
     #WHEN SOMEONE CLICKS JOIN BUTTON FOR GROUPS
+    #Pk is group id
     try:
         g = GroupUsers(group = GroupInfo.objects.get(group_id=pk), user = UserProfile.objects.get(user_id=request.user), user_name = request.user.first_name)
         g.save()

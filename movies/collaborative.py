@@ -27,9 +27,9 @@ def similar_user(user):
     return similar_movies
 
 def users_faves(user):
+    #return 5 most similar users based on ratings
     ratings = pd.read_csv("data/ratings.csv")
     user_demo = ratings.loc[(ratings.userId == user)].sort_values(by=['rating'], ascending=False).head(15)
-    #return 5 most similar users based on ratings
     return user_demo
 
 def get_movies(user):

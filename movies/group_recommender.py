@@ -3,7 +3,11 @@ import warnings
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
-
+'''
+Get recommendations for the groups
+Based on age and Occupation
+Merged with other users in the view
+'''
 
 def group_rec(age,occupation):
     users = pd.read_csv("data/users.csv")
@@ -20,5 +24,4 @@ def group_rec(age,occupation):
     user_avg_rating['count_ratings'] = user_demo.groupby('title')['rating'].count()
     hundred_most_voted = user_avg_rating.sort_values('count_ratings', ascending=False).head(50)
     top_10 = hundred_most_voted.sort_values('rating', ascending=False).head(20)
-    
     return top_10
