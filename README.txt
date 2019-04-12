@@ -1,3 +1,6 @@
+Git hub link - https://github.com/chooolie/FinalYearProject
+
+
 python manage.py shell
 RUN THE SHELL
 python manage.py makemigrations
